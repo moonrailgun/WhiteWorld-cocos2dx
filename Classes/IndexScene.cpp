@@ -27,7 +27,7 @@ bool Index::init()
 	{
 		return false;
 	}
-	
+
 	auto rootNode = CSLoader::createNode("index/IndexScene.csb");
 	if (rootNode != NULL) {
 		addChild(rootNode);

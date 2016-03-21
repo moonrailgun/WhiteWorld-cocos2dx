@@ -1,7 +1,6 @@
 #include "HelloWorldScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
-#include "Ball.h"
 
 USING_NS_CC;
 
