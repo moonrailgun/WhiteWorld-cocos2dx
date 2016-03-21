@@ -1,4 +1,4 @@
-#include "IndexScene.h"
+﻿#include "IndexScene.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 

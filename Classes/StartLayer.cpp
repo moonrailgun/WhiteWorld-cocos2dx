@@ -1,4 +1,4 @@
-#include "StartLayer.h"
+ï»¿#include "StartLayer.h"
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "GlobalDefine.h"
@@ -22,7 +22,7 @@ bool StartLayer::init()
 		return false;
 	}
 
-	// ¸ù¾İÒôÀÖµÄ¿ª¹ØÀ´²¥·Å±³¾°ÒôÀÖ
+	// æ ¹æ®éŸ³ä¹çš„å¼€å…³æ¥æ’­æ”¾èƒŒæ™¯éŸ³ä¹
 	if (getBoolFromXML(MUSIC_KEY))
 	{
 		float music = getFloatFromXML(MUSICVOL)*100.0f;

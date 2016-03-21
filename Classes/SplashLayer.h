@@ -1,4 +1,4 @@
-#ifndef __SplashScene__H__
+ï»¿#ifndef __SplashScene__H__
 #define __SplashScene__H__
 
 #include "cocos2d.h"
@@ -15,12 +15,12 @@ public:
 
 private:
 	Sprite* logoSprite;
-	// ³¡¾°ÇĞ»»
+	// åœºæ™¯åˆ‡æ¢
 	void nextScene(float dt);
 	void loadingTextureCallBack(Texture2D * texture);
 	void loadingAudio();
 	void onExit();
-	// ³õÊ¼»¯ÓÃ»§Êı¾İ
+	// åˆå§‹åŒ–ç”¨æˆ·æ•°æ®
 	void initUserData();
 	int m_iNumOfLoad;
 	std::thread* _loadingAudioThread;

@@ -1,4 +1,4 @@
-#ifndef __GlobalDefine__H__
+ï»¿#ifndef __GlobalDefine__H__
 #define __GlobalDefine__H__
 
 #include "cocos2d.h"
@@ -15,18 +15,18 @@ USING_NS_CC;
 #define getBoolFromXML  UserDefault::getInstance()->getBoolForKey
 #define audioEngine		SimpleAudioEngine::getInstance()
 
-#define SOUND_KEY       "soundClose"            // ±³¾°ÒôĞ§
-#define MUSIC_KEY       "musicClose"              // ±³¾°ÒôÀÖ
-#define SOUNDVOL        "soundVolume"        // ÒôĞ§ÒôÁ¿
-#define MUSICVOL        "musicVolume"          // ÒôÀÖÒôÁ¿
-#define EXP_KEY         "heroCurrentExp"        // Ó¢ĞÛµ±Ç°¾­Ñé
-#define HEROLEVEL_KEY   "heroLevel"          // µ±Ç°µÈ¼¶
-#define HEROCOIN_KEY    "heroCoin"            // Ó¢ĞÛ½ğ±Ò
-#define HEROENERGY_KEY  "heroEnergy"   // Ó¢ĞÛÌåÁ¦
-#define HEROHP_KEY      "heroHP"                // Ó¢ĞÛÑªÁ¿
-#define HEROMP_KEY      "heroMP"               // Ó¢ĞÛÄÜÁ¿
-#define HEROAPOWER_KEY  "heroAPower"  // Ó¢ĞÛÆÕ¹¥ÉËº¦
-#define HEROABILITY_KEY "heroAbility"        // Ó¢ĞÛÄÜÁ¦µÈ¼¶
-#define GAMEOVER        "gameOver"              // ÓÎÏ·½áÊø½á¹û
+#define SOUND_KEY       "soundClose"            // èƒŒæ™¯éŸ³æ•ˆ
+#define MUSIC_KEY       "musicClose"              // èƒŒæ™¯éŸ³ä¹
+#define SOUNDVOL        "soundVolume"        // éŸ³æ•ˆéŸ³é‡
+#define MUSICVOL        "musicVolume"          // éŸ³ä¹éŸ³é‡
+#define EXP_KEY         "heroCurrentExp"        // è‹±é›„å½“å‰ç»éªŒ
+#define HEROLEVEL_KEY   "heroLevel"          // å½“å‰ç­‰çº§
+#define HEROCOIN_KEY    "heroCoin"            // è‹±é›„é‡‘å¸
+#define HEROENERGY_KEY  "heroEnergy"   // è‹±é›„ä½“åŠ›
+#define HEROHP_KEY      "heroHP"                // è‹±é›„è¡€é‡
+#define HEROMP_KEY      "heroMP"               // è‹±é›„èƒ½é‡
+#define HEROAPOWER_KEY  "heroAPower"  // è‹±é›„æ™®æ”»ä¼¤å®³
+#define HEROABILITY_KEY "heroAbility"        // è‹±é›„èƒ½åŠ›ç­‰çº§
+#define GAMEOVER        "gameOver"              // æ¸¸æˆç»“æŸç»“æœ
 
 #endif

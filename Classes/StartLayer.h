@@ -1,4 +1,4 @@
-#ifndef __StartLayer__H__
+ï»¿#ifndef __StartLayer__H__
 #define __StartLayer__H__
 
 #include "cocos2d.h"
@@ -15,7 +15,7 @@ public:
 	static Scene* createScene();
 	CREATE_FUNC(StartLayer);
 private:
-	// ¿ªÊ¼Ö÷½çÃæµÄ°´Å¥¿Ø¼ş¼à¿ØÊÂ¼ş
+	// å¼€å§‹ä¸»ç•Œé¢çš„æŒ‰é’®æ§ä»¶ç›‘æ§äº‹ä»¶
 	void touchSet(Ref* pSender);
 	void touchLib(Ref* pSender);
 	void touchMiJi(Ref* pSender);
@@ -23,7 +23,7 @@ private:
 	void touchTZ(Ref* pSender);
 	void touchHelp(Ref* pSender);
 
-	// Í¼Æ¬¾«Áé
+	// å›¾ç‰‡ç²¾çµ
 	Sprite* title;
 	Sprite* bgPic;
 

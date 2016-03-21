@@ -1,4 +1,4 @@
-#include "SplashLayer.h"
+ï»¿#include "SplashLayer.h"
 #include "GlobalDefine.h"
 #include "SimpleAudioEngine.h"
 #include "StartLayer.h"
@@ -20,12 +20,12 @@ bool SplashLayer::init(){
 		return false;
 	}
 
-	// ³õÊ¼»¯logo¾«Áé
+	// åˆå§‹åŒ–logoç²¾çµ
 	logoSprite = Sprite::create("logo.png");
 	logoSprite->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	this->addChild(logoSprite);
 
-	// Ê×´ÎÔËÐÐ³õÊ¼»¯ÓÃ»§Êý¾Ý
+	// é¦–æ¬¡è¿è¡Œåˆå§‹åŒ–ç”¨æˆ·æ•°æ®
 	if (!getBoolFromXML("_IS_EXISTED"))
 	{
 		initUserData();
@@ -37,7 +37,7 @@ bool SplashLayer::init(){
 	setFloatToXML(MUSICVOL, 0.35f);
 	UserDefault::getInstance()->flush();
 
-	//todo ÇÐ»»µ½ÏÂ¸ö³¡¾°
+	//todo åˆ‡æ¢åˆ°ä¸‹ä¸ªåœºæ™¯
 	this->schedule(schedule_selector(SplashLayer::nextScene), 1, 1, 1);
 
 	return true;
@@ -56,7 +56,7 @@ void SplashLayer::initUserData()
 {
 	setBoolToXML(SOUND_KEY, true);
 	setBoolToXML(MUSIC_KEY, true);
-	UserDefault::getInstance()->flush();//Ë¢ÐÂ
+	UserDefault::getInstance()->flush();//åˆ·æ–°
 }
 
 void SplashLayer::nextScene(float dt)

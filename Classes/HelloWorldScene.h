@@ -1,4 +1,4 @@
-#ifndef __HELLOWORLD_SCENE_H__
+ï»¿#ifndef __HELLOWORLD_SCENE_H__
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
@@ -22,7 +22,7 @@ public:
 
 	virtual void tableCellHighlight(TableView* table, TableViewCell* cell) {};
 
-	// Í¨¹ý TableViewDataSource ¼Ì³Ð
+	// é€šè¿‡ TableViewDataSource ç»§æ‰¿
 	virtual TableViewCell * tableCellAtIndex(TableView * table, ssize_t idx) override;
 	virtual ssize_t numberOfCellsInTableView(TableView * table) override;
 
