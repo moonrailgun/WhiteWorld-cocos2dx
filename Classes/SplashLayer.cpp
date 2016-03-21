@@ -1,6 +1,7 @@
-#include "SimpleAudioEngine.h"
-#include "GlobalDefine.h"
 #include "SplashLayer.h"
+#include "GlobalDefine.h"
+#include "SimpleAudioEngine.h"
+#include "StartLayer.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -37,6 +38,7 @@ bool SplashLayer::init(){
 	UserDefault::getInstance()->flush();
 
 	//todo 切换到下个场景
+	this->schedule(schedule_selector(SplashLayer::nextScene), 1, 1, 1);
 
 	return true;
 }
@@ -47,23 +49,25 @@ void SplashLayer::loadingTextureCallBack(Texture2D *texture){
 
 void SplashLayer::loadingAudio()
 {
-
+	
 }
 
 void SplashLayer::initUserData()
 {
-
+	setBoolToXML(SOUND_KEY, true);
+	setBoolToXML(MUSIC_KEY, true);
+	UserDefault::getInstance()->flush();//刷新
 }
 
 void SplashLayer::nextScene(float dt)
 {
-
+	Director::getInstance()->replaceScene(TransitionFade::create(2.0f, StartLayer::createScene()));
 }
 
 void SplashLayer::onExit()
 {
 	Layer::onExit();
-	_loadingAudioThread->join();
-	CC_SAFE_DELETE(_loadingAudioThread);
+	//_loadingAudioThread->join();
+	//CC_SAFE_DELETE(_loadingAudioThread);
 	this->unschedule(schedule_selector(SplashLayer::nextScene));
 }

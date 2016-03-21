@@ -13,6 +13,7 @@ USING_NS_CC;
 #define getIntFromXML   UserDefault::getInstance()->getIntegerForKey
 #define getFloatFromXML UserDefault::getInstance()->getFloatForKey
 #define getBoolFromXML  UserDefault::getInstance()->getBoolForKey
+#define audioEngine		SimpleAudioEngine::getInstance()
 
 #define SOUND_KEY       "soundClose"            // ±≥æ∞“Ù–ß
 #define MUSIC_KEY       "musicClose"              // ±≥æ∞“Ù¿÷
