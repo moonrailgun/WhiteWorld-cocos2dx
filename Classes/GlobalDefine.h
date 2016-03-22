@@ -15,8 +15,8 @@ USING_NS_CC;
 #define getBoolFromXML  UserDefault::getInstance()->getBoolForKey
 #define audioEngine		SimpleAudioEngine::getInstance()
 
-#define SOUND_KEY       "soundClose"            // 背景音效
-#define MUSIC_KEY       "musicClose"              // 背景音乐
+#define SOUND_KEY       "soundKey"            // 背景音效
+#define MUSIC_KEY       "musicKey"              // 背景音乐
 #define SOUNDVOL        "soundVolume"        // 音效音量
 #define MUSICVOL        "musicVolume"          // 音乐音量
 #define EXP_KEY         "heroCurrentExp"        // 英雄当前经验
@@ -28,5 +28,11 @@ USING_NS_CC;
 #define HEROAPOWER_KEY  "heroAPower"  // 英雄普攻伤害
 #define HEROABILITY_KEY "heroAbility"        // 英雄能力等级
 #define GAMEOVER        "gameOver"              // 游戏结束结果
+
+#define PLAYEFFECT if (getBoolFromXML(SOUND_KEY)) \
+{\
+	audioEngine->setEffectsVolume(getFloatFromXML(SOUNDVOL));\
+	audioEngine->playEffect("sound/button.wav");\
+}
 
 #endif

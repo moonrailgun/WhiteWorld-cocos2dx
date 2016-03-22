@@ -65,7 +65,7 @@ void SplashLayer::loadingAudio()
 	//初始化 音乐
 	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/Airship.mp3");
 	//初始化音效  
-	SimpleAudioEngine::getInstance()->preloadEffect("Sound/button.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("sound/button.wav");
 }
 
 void SplashLayer::initUserData()

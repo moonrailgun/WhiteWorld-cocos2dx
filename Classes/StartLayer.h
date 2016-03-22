@@ -16,13 +16,11 @@ public:
 	CREATE_FUNC(StartLayer);
 private:
 	// 开始主界面的按钮控件监控事件
+	void touchNewGame(Ref* pSender);
+	void touchContinueGame(Ref* pSender);
 	void touchSet(Ref* pSender);
-	void touchLib(Ref* pSender);
-	void touchMiJi(Ref* pSender);
-	void touchCG(Ref* pSender);
-	void touchTZ(Ref* pSender);
 	void touchHelp(Ref* pSender);
-
+	
 	// 图片精灵
 	Sprite* title;
 	Sprite* bgPic;
