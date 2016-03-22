@@ -37,19 +37,35 @@ bool SplashLayer::init(){
 	setFloatToXML(MUSICVOL, 0.35f);
 	UserDefault::getInstance()->flush();
 
-	//todo 切换到下个场景
-	this->schedule(schedule_selector(SplashLayer::nextScene), 1, 1, 1);
+	m_iNumOfLoad = 0;
+	//todo 可能会有加载顺序的bug
+	//主界面
+	Director::getInstance()->getTextureCache()->addImageAsync("pnglist/StartLayer.png", CC_CALLBACK_1(SplashLayer::loadingTextureCallBack, this));
+
+	_loadingAudioThread = new std::thread(&SplashLayer::loadingAudio, this);
 
 	return true;
 }
 
-void SplashLayer::loadingTextureCallBack(Texture2D *texture){
-
+void SplashLayer::loadingTextureCallBack(Texture2D *texture) {
+	switch (m_iNumOfLoad++) {
+	case 0:
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile("pnglist/StartLayer.plist", texture);
+		log("a");
+		this->schedule(schedule_selector(SplashLayer::nextScene), 1, 1, 1);//加载到下一个场景
+		break;
+	default:
+		break;
+	}
 }
 
 void SplashLayer::loadingAudio()
 {
-	
+	log("loadAudio");
+	//初始化 音乐
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/Airship.mp3");
+	//初始化音效  
+	SimpleAudioEngine::getInstance()->preloadEffect("Sound/button.wav");
 }
 
 void SplashLayer::initUserData()
@@ -67,7 +83,7 @@ void SplashLayer::nextScene(float dt)
 void SplashLayer::onExit()
 {
 	Layer::onExit();
-	//_loadingAudioThread->join();
-	//CC_SAFE_DELETE(_loadingAudioThread);
+	_loadingAudioThread->join();
+	CC_SAFE_DELETE(_loadingAudioThread);
 	this->unschedule(schedule_selector(SplashLayer::nextScene));
 }

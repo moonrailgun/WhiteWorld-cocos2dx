@@ -41,5 +41,9 @@ bool StartLayer::init()
 		SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 	}
 
+	bgPic = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("StartBackground.png"));
+	bgPic->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
+	this->addChild(bgPic);
+
 	return true;
 }
