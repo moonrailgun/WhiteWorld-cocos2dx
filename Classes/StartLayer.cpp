@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "GlobalDefine.h"
+#include "CreateProfileLayer.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -82,6 +83,7 @@ void StartLayer::touchNewGame(Ref* pSender)
 {
 	log("新的开始");
 	PLAYEFFECT;
+	Director::getInstance()->replaceScene(CreateProfileLayer::createScene());
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
 
