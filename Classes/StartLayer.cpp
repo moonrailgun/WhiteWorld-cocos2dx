@@ -81,7 +81,7 @@ bool StartLayer::init()
 
 void StartLayer::touchNewGame(Ref* pSender)
 {
-	log("新的开始");
+	log("NewGame");
 	PLAYEFFECT;
 	Director::getInstance()->replaceScene(CreateProfileLayer::createScene());
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
@@ -89,21 +89,21 @@ void StartLayer::touchNewGame(Ref* pSender)
 
 void StartLayer::touchContinueGame(Ref* pSender)
 {
-	log("旧的回忆");
+	log("ContinueGame");
 	PLAYEFFECT;
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
 
 void StartLayer::touchSet(Ref* pSender)
 {
-	log("设置");
+	log("Set");
 	PLAYEFFECT;
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
 
 void StartLayer::touchHelp(Ref* pSender)
 {
-	log("帮助");
+	log("Help");
 	PLAYEFFECT;
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
