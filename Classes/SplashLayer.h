@@ -1,5 +1,5 @@
-﻿#ifndef __SplashScene__H__
-#define __SplashScene__H__
+﻿#ifndef __SplashLayer__H__
+#define __SplashLayer__H__
 
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"

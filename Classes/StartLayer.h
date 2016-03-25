@@ -22,9 +22,11 @@ private:
 	void touchHelp(Ref* pSender);
 	
 	// 图片精灵
-	Sprite* title;
+	//Sprite* title;
 	Sprite* bgPic;
 
+	Layer* addonBoard;
+	void showAddonBoard();
 };
 
 #endif

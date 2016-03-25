@@ -3,6 +3,7 @@
 #include "SimpleAudioEngine.h"
 #include "GlobalDefine.h"
 #include "CreateProfileLayer.h"
+#include "SetLayer.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -45,6 +46,11 @@ bool StartLayer::init()
 	bgPic = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("StartBackground.png"));
 	bgPic->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	this->addChild(bgPic);
+
+	addonBoard = LayerColor::create(Color4B(0, 0, 0, 126), 710, 570);
+	addonBoard->setPosition(50, 70);
+	addonBoard->setVisible(false);
+	this->addChild(addonBoard);
 
 	auto newGameItem = MenuItemSprite::create(
 		Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("NewGameNormal.png")),
@@ -98,6 +104,8 @@ void StartLayer::touchSet(Ref* pSender)
 {
 	log("Set");
 	PLAYEFFECT;
+
+	showAddonBoard();
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
 
@@ -106,4 +114,10 @@ void StartLayer::touchHelp(Ref* pSender)
 	log("Help");
 	PLAYEFFECT;
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
+}
+
+void StartLayer::showAddonBoard(){
+	if (addonBoard != NULL && !addonBoard->isVisible()){
+		addonBoard->setVisible(true);
+	}
 }

@@ -1,5 +1,5 @@
-﻿#ifndef __SplashScene__H__
-#define __SplashScene__H__
+﻿#ifndef __CreateProfileLayer__H__
+#define __CreateProfileLayer__H__
 
 #include "cocos2d.h"
 
