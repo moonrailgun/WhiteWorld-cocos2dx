@@ -1,6 +1,7 @@
 ﻿#include "AppDelegate.h"
-#include "HelloWorldScene.h"
 #include "SplashLayer.h"
+#include "XMLParser.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "AgentManager.h"
 using namespace anysdk::framework;
@@ -50,7 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::createWithRect("HelloCpp", Rect(0, 0, 1280, 720));
+        glview = GLViewImpl::createWithRect(XMLParser::parseWithFile("data/base.xml")->getString("gamename")->getCString(), Rect(0, 0, 1280, 720));
         director->setOpenGLView(glview);
     }
 
