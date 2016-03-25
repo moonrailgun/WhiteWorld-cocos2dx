@@ -41,6 +41,7 @@ bool SplashLayer::init(){
 	//todo 可能会有加载顺序的bug
 	//主界面
 	Director::getInstance()->getTextureCache()->addImageAsync("pnglist/StartLayer.png", CC_CALLBACK_1(SplashLayer::loadingTextureCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync("pnglist/SetLayer.png", CC_CALLBACK_1(SplashLayer::loadingTextureCallBack, this));
 
 	_loadingAudioThread = new std::thread(&SplashLayer::loadingAudio, this);
 
@@ -51,7 +52,9 @@ void SplashLayer::loadingTextureCallBack(Texture2D *texture) {
 	switch (m_iNumOfLoad++) {
 	case 0:
 		SpriteFrameCache::getInstance()->addSpriteFramesWithFile("pnglist/StartLayer.plist", texture);
-		log("a");
+		break;
+	case 1:
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile("pnglist/SetLayer.plist", texture);
 		this->schedule(schedule_selector(SplashLayer::nextScene), 1, 1, 1);//加载到下一个场景
 		break;
 	default:

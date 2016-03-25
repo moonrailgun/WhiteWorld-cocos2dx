@@ -47,10 +47,11 @@ bool StartLayer::init()
 	bgPic->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	this->addChild(bgPic);
 
-	addonBoard = LayerColor::create(Color4B(0, 0, 0, 126), 710, 570);
-	addonBoard->setPosition(50, 70);
-	addonBoard->setVisible(false);
-	this->addChild(addonBoard);
+	//拓展板
+	addonBoard = DrawNode::create();
+	addonBoard->drawSolidRect(Vec2(50, 70), Vec2(760, 640), Color4F(0, 0, 0, 0.6));
+	this->addChild(addonBoard, 1);
+
 
 	auto newGameItem = MenuItemSprite::create(
 		Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("NewGameNormal.png")),
@@ -106,6 +107,7 @@ void StartLayer::touchSet(Ref* pSender)
 	PLAYEFFECT;
 
 	showAddonBoard();
+	addonBoard->addChild(SetLayer::createLayer(), 2);
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
 

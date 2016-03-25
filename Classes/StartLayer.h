@@ -25,7 +25,7 @@ private:
 	//Sprite* title;
 	Sprite* bgPic;
 
-	Layer* addonBoard;
+	DrawNode* addonBoard;
 	void showAddonBoard();
 };
 
