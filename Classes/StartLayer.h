@@ -26,7 +26,8 @@ private:
 	Sprite* bgPic;
 
 	DrawNode* addonBoard;
-	void showAddonBoard();
+	Layer* addonLayer;
+	void showAddonLayer(Layer* layer, int localZOrder = 2);
 };
 
 #endif

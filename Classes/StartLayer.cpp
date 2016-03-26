@@ -106,9 +106,7 @@ void StartLayer::touchSet(Ref* pSender)
 	log("Set");
 	PLAYEFFECT;
 
-	showAddonBoard();
-	addonBoard->addChild(SetLayer::createLayer(), 2);
-	//Director::getInstance()->replaceScene(SetLayer::createScene());
+	showAddonLayer(SetLayer::createLayer(), 2);
 }
 
 void StartLayer::touchHelp(Ref* pSender)
@@ -118,8 +116,16 @@ void StartLayer::touchHelp(Ref* pSender)
 	//Director::getInstance()->replaceScene(SetLayer::createScene());
 }
 
-void StartLayer::showAddonBoard(){
+void StartLayer::showAddonLayer(Layer* layer, int localZOrder){
 	if (addonBoard != NULL && !addonBoard->isVisible()){
 		addonBoard->setVisible(true);
 	}
+
+	if (addonLayer != NULL){
+		addonBoard->removeChild(addonLayer);
+		addonLayer = NULL;
+	}
+
+	addonLayer = layer;
+	addonBoard->addChild(addonLayer);
 }
