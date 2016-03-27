@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="6">
+ <tileset firstgid="1" name="Dungeon_C" tilewidth="32" tileheight="32">
+  <image source="C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce/Graphics/Tilesets/Dungeon_C.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="Inside_A2" tilewidth="32" tileheight="32">
+  <image source="C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce/Graphics/Tilesets/Inside_A2.png" width="512" height="384"/>
+ </tileset>
+ <layer name="底部" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjZGRgYAJiRgK0IBALEUErArESETQh++hpLzaMzR5sGJs92DAhf8IwAA3jBpM=
+  </data>
+ </layer>
+ <layer name="物体" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzdzjkSgCAUBNF//1uIaI4suWznssMJMWWqXtLRmK3vgMMpzePCLS3gQZSWkFGkvaho0joG5o9fO+0DxrYMoA==
+  </data>
+ </layer>
+</map>
