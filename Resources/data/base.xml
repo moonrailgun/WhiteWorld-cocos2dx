@@ -3,4 +3,6 @@
 	<string name="gamename">纯白世界</string>
     <string name="music">音乐</string>
     <string name="effect">音效</string>
+	<string name="askName">请问您的名字？</string>
+	<string name="inputName">请在此输入您的名字</string>
 </resources>
