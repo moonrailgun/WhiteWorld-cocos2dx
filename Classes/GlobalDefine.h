@@ -2,6 +2,7 @@
 #define __GlobalDefine__H__
 
 #include "cocos2d.h"
+#include "XMLParser.h"
 
 USING_NS_CC;
 
@@ -34,5 +35,7 @@ USING_NS_CC;
 	audioEngine->setEffectsVolume(getFloatFromXML(SOUNDVOL));\
 	audioEngine->playEffect("sound/button.wav");\
 }
+
+#define XMLGetString(_fileUrl_,_key_)  XMLParser::parseWithFile(_fileUrl_)->getString(_key_)->getCString()
 
 #endif
