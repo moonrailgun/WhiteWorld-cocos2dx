@@ -3,6 +3,7 @@
 #include "GlobalDefine.h"
 #include "SimpleAudioEngine.h"
 #include "cocos-ext.h"
+#include "GameLayer.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -65,7 +66,7 @@ bool CreateProfileLayer::init(){
 void CreateProfileLayer::addEditBox(EditBox* editBox, Vec2 editPoint,const char* defaultValue, bool isPassword)
 {
 
-	editBox->CCNode::setPosition(editPoint.x, editPoint.y); //位置
+	editBox->setPosition(Vec2(editPoint.x, editPoint.y)); //位置
 	editBox->setFontColor(Color3B(255,255,255)); //文字颜色
 	editBox->setPlaceHolder(defaultValue); //输入框缺省文字
 	editBox->setPlaceholderFontColor(Color3B(255, 255, 255)); //缺省文字颜色
@@ -85,4 +86,8 @@ void CreateProfileLayer::enterGame(CCObject *object, Control::EventType controlE
 	
 	log("playername: %s", playerName);
 	log("is creating profile");
+
+	log("have not finish.");
+
+	Director::getInstance()->replaceScene(GameLayer::createScene());
 }
