@@ -2,6 +2,7 @@
 #define __GlobalDefine__H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 #include "XMLParser.h"
 
 USING_NS_CC;
