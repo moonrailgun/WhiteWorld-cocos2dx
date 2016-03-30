@@ -87,7 +87,7 @@ void CreateProfileLayer::enterGame(CCObject *object, Control::EventType controlE
 	log("playername: %s", playerName);
 	log("is creating profile");
 
-	log("have not finish.");
+	log("have not finished.");
 
 	Director::getInstance()->replaceScene(GameLayer::createScene());
 }
