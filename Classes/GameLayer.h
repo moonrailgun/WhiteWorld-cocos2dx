@@ -5,6 +5,7 @@
 #include "SimpleAudioEngine.h"
 #include "GlobalDefine.h"
 #include "GlobalData.h"
+#include "MapManager.h"
 
 USING_NS_CC;
 

@@ -21,6 +21,7 @@ public :
 	char* getMapName();
 	Size getMapSize();
 	int getMapZoom();
+	GameLayer* getGameLayer();
 
 	Sprite* selectedBlock;
 	DrawNode* selectedBlockHighLight;

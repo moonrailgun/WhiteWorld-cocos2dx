@@ -1,5 +1,6 @@
 ﻿#include "GameLayer.h"
 #include "GlobalDefine.h"
+#include "GlobalData.h"
 #include "SimpleAudioEngine.h"
 #include "MapManager.h"
 
@@ -37,9 +38,11 @@ bool GameLayer::init(){
 
 	this->setName("game");
 
-	auto manager = MapManager::createManager(this);
-	manager->loadMap("home");
-	manager->setSelectedHighlight();
+	playerName = "12456";
+
+	mapManager = MapManager::createManager(this);
+	mapManager->loadMap("home");
+	mapManager->setSelectedHighlight();
 
 	return true;
 }
