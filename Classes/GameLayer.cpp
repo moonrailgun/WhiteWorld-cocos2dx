@@ -3,6 +3,7 @@
 #include "GlobalData.h"
 #include "SimpleAudioEngine.h"
 #include "MapManager.h"
+#include "DialogueManager.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -43,6 +44,10 @@ bool GameLayer::init(){
 	mapManager = MapManager::createManager(this);
 	mapManager->loadMap("home");
 	mapManager->setSelectedHighlight();
+
+	dialogueManager = DialogueManager::create();
+	dialogueManager->showDialogue(this);
+	dialogueManager->updateDialogueText("test string");
 
 	return true;
 }

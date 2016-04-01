@@ -1,5 +1,5 @@
 ﻿#include "GlobalData.h"
-#include "MapManager.h"
 
 MapManager* mapManager;
+DialogueManager* dialogueManager;
 char* playerName;

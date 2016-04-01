@@ -194,9 +194,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/DialogBoxGreen..png</key>
-            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/hoverBox..png</key>
-            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite.psd</key>
+            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/DialogBoxGreen.png</key>
+            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/hoverBox.png</key>
             <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite01.png</key>
             <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite02.png</key>
             <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite03.png</key>
@@ -205,8 +204,8 @@
             <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite06.png</key>
             <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite07.png</key>
             <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/sprite08.png</key>
-            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/textBox..png</key>
-            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/toolBox..png</key>
+            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/textBox.png</key>
+            <key type="filename">../../../../../Creation/图形/WhiteWorld/GameLayer/toolBox.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -214,9 +213,7 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/DialogBoxGreen..png</filename>
-            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/hoverBox..png</filename>
-            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite.psd</filename>
+            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/hoverBox.png</filename>
             <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite01.png</filename>
             <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite02.png</filename>
             <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite03.png</filename>
@@ -225,8 +222,9 @@
             <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite06.png</filename>
             <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite07.png</filename>
             <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/sprite08.png</filename>
-            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/textBox..png</filename>
-            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/toolBox..png</filename>
+            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/textBox.png</filename>
+            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/toolBox.png</filename>
+            <filename>../../../../../Creation/图形/WhiteWorld/GameLayer/DialogBoxGreen.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

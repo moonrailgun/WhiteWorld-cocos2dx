@@ -83,7 +83,6 @@ void MapManager::onMouseMove(EventMouse *mouse) {
 	mousePos.clamp(mapStartPoint + Vec2(0.1, 0.1), mapStartPoint + mapSize - Vec2(0.1, 0.1));//限制在地图内,距离地图边缘0.1像素
 
 	Vec2 tileCoordinate = Vec2(mousePos.x / mapTileSize.width, mousePos.y / mapTileSize.height);
-	log("%f,%f", tileCoordinate.x, tileCoordinate.y);
 	Sprite* tileSelected = bottomLayer->getTileAt(Vec2((int)tileCoordinate.x, map->getMapSize().height - 1 - (int)tileCoordinate.y));//获取选中地块的精灵
 	auto tileSelectedPos = tileSelected->getPosition();//地块相对坐标
 	auto tileSelectedRealPos = tileSelectedPos * getMapZoom() + Vec2(mapSize.width * mapAnchor.x, mapSize.height*mapAnchor.y) + mapStartPoint; //地块真实像素坐标

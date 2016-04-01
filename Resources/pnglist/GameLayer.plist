@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>DialogBoxGreen..png</key>
+            <key>DialogBoxGreen.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hoverBox..png</key>
+            <key>hoverBox.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite.psd</key>
+            <key>sprite01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite01.png</key>
+            <key>sprite02.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -64,7 +64,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite02.png</key>
+            <key>sprite03.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -79,7 +79,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite03.png</key>
+            <key>sprite04.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -94,7 +94,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite04.png</key>
+            <key>sprite05.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -109,7 +109,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite05.png</key>
+            <key>sprite06.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -124,7 +124,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite06.png</key>
+            <key>sprite07.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -139,7 +139,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite07.png</key>
+            <key>sprite08.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -154,22 +154,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sprite08.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{32,32}</string>
-                <key>spriteSourceSize</key>
-                <string>{32,32}</string>
-                <key>textureRect</key>
-                <string>{{357,103},{32,32}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>textBox..png</key>
+            <key>textBox.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -184,7 +169,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>toolBox..png</key>
+            <key>toolBox.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -213,7 +198,7 @@
             <key>size</key>
             <string>{390,164}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b79f16c963ba57e5fec4a94b1de353b3:7ea201cf5f8f66a6ea3df2612939736f:2d63f03740a3430a135ab2a1af88b6d5$</string>
+            <string>$TexturePacker:SmartUpdate:05bf32b552e7770e9f9e71c7bdd11a61:943733d03d9c54dd730c3397755236d6:2d63f03740a3430a135ab2a1af88b6d5$</string>
             <key>textureFileName</key>
             <string>GameLayer.png</string>
         </dict>

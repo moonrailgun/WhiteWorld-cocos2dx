@@ -42,6 +42,7 @@ bool SplashLayer::init(){
 	//主界面
 	Director::getInstance()->getTextureCache()->addImageAsync("pnglist/StartLayer.png", CC_CALLBACK_1(SplashLayer::loadingTextureCallBack, this));
 	Director::getInstance()->getTextureCache()->addImageAsync("pnglist/SetLayer.png", CC_CALLBACK_1(SplashLayer::loadingTextureCallBack, this));
+	Director::getInstance()->getTextureCache()->addImageAsync("pnglist/GameLayer.png", CC_CALLBACK_1(SplashLayer::loadingTextureCallBack, this));
 
 	_loadingAudioThread = new std::thread(&SplashLayer::loadingAudio, this);
 
@@ -55,6 +56,9 @@ void SplashLayer::loadingTextureCallBack(Texture2D *texture) {
 		break;
 	case 1:
 		SpriteFrameCache::getInstance()->addSpriteFramesWithFile("pnglist/SetLayer.plist", texture);
+		break;
+	case 2:
+		SpriteFrameCache::getInstance()->addSpriteFramesWithFile("pnglist/GameLayer.plist", texture);
 		this->schedule(schedule_selector(SplashLayer::nextScene), 1, 1, 1);//加载到下一个场景
 		break;
 	default:
