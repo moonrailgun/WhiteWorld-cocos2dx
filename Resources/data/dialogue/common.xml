@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialogues name="common">
+	<dialogue id="1" triggerPos="home">
+		<string name="未知">孩子。。。孩子。。。</string>
+		<string name="未知">醒来吧。。</string>
+		<options>
+			<option>你是谁？</option>
+		</options>
+		<string name="未知">我是精灵的长者。</string>
+		<string name="未知">混沌与秩序的行走者</string>
+		<string name="未知">孩子，我必须告诉你一个不幸的消息。你已经死亡了。</string>
+		<options>
+			<option>什么？我已经死亡了？</option>
+			<option>不！不可能。我明明还有感知。</option>
+		</options>
+		<string name="未知">不必感到惊讶。你虽然失去了肉体。但你的精神依旧存在。</string>
+		<string name="未知">欢迎来到精灵的国度。因为一片虚无。这里被称为————纯白世界</string>
+	</dialogue>
+</dialogues>

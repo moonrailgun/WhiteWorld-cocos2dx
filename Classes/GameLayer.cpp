@@ -4,6 +4,7 @@
 #include "SimpleAudioEngine.h"
 #include "MapManager.h"
 #include "DialogueManager.h"
+#include "DialogueHelper.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -48,6 +49,8 @@ bool GameLayer::init(){
 	dialogueManager = DialogueManager::create();
 	dialogueManager->showDialogue(this);
 	dialogueManager->updateDialogueText("test string");
+
+	DialogueHelper* dialogueHelper = DialogueHelper::parseWithFile("common");
 
 	return true;
 }
