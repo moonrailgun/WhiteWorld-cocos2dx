@@ -51,6 +51,8 @@ bool GameLayer::init(){
 	dialogueManager->updateDialogueText("test string");
 
 	DialogueHelper* dialogueHelper = DialogueHelper::parseWithFile("common");
+	auto dialogue = dialogueHelper->getFirstDialogue();
+	dialogueManager->updateDialogueText(dialogue->at(0).content.c_str());
 
 	return true;
 }

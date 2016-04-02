@@ -12,7 +12,7 @@ bool DialogueManager::init(){
 
 	//文本
 	this->_dialogueText = LabelTTF::create("","",26);
-	this->_dialogueText->setDimensions(this->_dialogueBg->getPreferredSize() - Size(40,20));
+	this->_dialogueText->setDimensions(this->_dialogueBg->getPreferredSize() - Size(40,30));
 	this->_dialogueText->setColor(Color3B(16, 16, 16));
 	this->_dialogueText->setAnchorPoint(Vec2(0.5, 0.5));
 	this->_dialogueText->setHorizontalAlignment(TextHAlignment::LEFT);
@@ -40,7 +40,7 @@ void DialogueManager::showDialogue(Layer* layer){
 	}
 }
 
-void DialogueManager::updateDialogueText(char* text){
+void DialogueManager::updateDialogueText(const char* text){
 	if (_dialogueText != NULL){
 		_dialogueText->setString(text);
 	}

@@ -41,10 +41,22 @@ DialogueHelper* DialogueHelper::parseWithFile(const char *xmlFileName){
 			log("loading text：%s", content->GetText());
 		}
 
-		dialogueHelper->dialogueList.push_back(dialogueData);
+		dialogueHelper->_dialogueList.push_back(dialogueData);
 	}
 
 	return dialogueHelper;
+}
+
+std::vector<DialogueData>* DialogueHelper::getDialogueAt(int index){
+	return &(this->_dialogueList.at(index));
+}
+
+std::vector<DialogueData>* DialogueHelper::getFirstDialogue(){
+	return &(this->_dialogueList.front());
+}
+
+std::vector<std::vector<DialogueData>>* DialogueHelper::getDialogueList(){
+	return &this->_dialogueList;
 }
 
 DialogueHelper::DialogueHelper(){

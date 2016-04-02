@@ -14,7 +14,7 @@ public:
 
 	bool loadDialogueFromFile(char* fileName);
 	void showDialogue(Layer* layer);
-	void updateDialogueText(char* text);
+	void updateDialogueText(const char* text);
 private:
 	Scale9Sprite* _dialogueBg;
 	LabelTTF* _dialogueText;
