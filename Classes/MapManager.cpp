@@ -74,22 +74,25 @@ void MapManager::onMouseMove(EventMouse *mouse) {
 	TMXLayer* bottomLayer = _currentMap->getLayer("bottom");
 
 	auto mapTileSize = bottomLayer->getMapTileSize() * getMapZoom();//地块实际大小
-	auto map = getMap();
+	auto map = this->getMap();
 	auto mapSize = Size(map->getMapSize().width * mapTileSize.width, map->getMapSize().height * mapTileSize.height);//地图实际大小
 	auto mapAnchor = map->getAnchorPoint();
 
 	Vec2 mapStartPoint = Vec2(map->getPositionX() - mapSize.width * mapAnchor.x, map->getPositionY() - mapSize.height * mapAnchor.y);//地图左下角坐标
 
-	mousePos.clamp(mapStartPoint + Vec2(0.1, 0.1), mapStartPoint + mapSize - Vec2(0.1, 0.1));//限制在地图内,距离地图边缘0.1像素
+	Vec2 mouseMapPos = mousePos.getClampPoint(mapStartPoint + Vec2(0.1, 0.1), mapStartPoint + mapSize - Vec2(0.1, 0.1));//限制在地图内,距离地图边缘0.1像素
+	if (mouseMapPos != mousePos){ 
+		return; //鼠标不在地图内
+	}
+	mouseMapPos -= mapStartPoint;//鼠标位置相对地图左下角的位置
 
-	Vec2 tileCoordinate = Vec2(mousePos.x / mapTileSize.width, mousePos.y / mapTileSize.height);
+	Vec2 tileCoordinate = Vec2(mouseMapPos.x / mapTileSize.width, mouseMapPos.y / mapTileSize.height);
 	Sprite* tileSelected = bottomLayer->getTileAt(Vec2((int)tileCoordinate.x, map->getMapSize().height - 1 - (int)tileCoordinate.y));//获取选中地块的精灵
 	auto tileSelectedPos = tileSelected->getPosition();//地块相对坐标
-	auto tileSelectedRealPos = tileSelectedPos * getMapZoom() + Vec2(mapSize.width * mapAnchor.x, mapSize.height*mapAnchor.y) + mapStartPoint; //地块真实像素坐标
+	auto tileSelectedRealPos = tileSelectedPos * getMapZoom() + mapStartPoint; //地块真实像素坐标
 
 	selectedBlockHighLight->clear();
-	//selectedBlockHighLight->drawRect(mousePos, mousePos + Vec2(32, 32), Color4F(1, 0, 0, 1));
-	selectedBlockHighLight->drawRect(tileSelectedRealPos, tileSelectedRealPos + mapTileSize, Color4F(1, 0, 0, 1));//地块高亮绘制
+	selectedBlockHighLight->drawRect(tileSelectedRealPos, tileSelectedRealPos + mapTileSize, Color4F(1, 0, 0, 1));//地块高亮边框绘制
 }
 
 GameLayer* MapManager::getGameLayer(){

@@ -44,6 +44,8 @@ bool GameLayer::init(){
 
 	mapManager = MapManager::createManager(this);
 	mapManager->loadMap("home");
+	mapManager->getMap()->setAnchorPoint(Vec2(0.5, 0.5));
+	mapManager->getMap()->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	mapManager->setSelectedHighlight();
 
 	dialogueManager = DialogueManager::create();
