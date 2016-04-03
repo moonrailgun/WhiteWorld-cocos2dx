@@ -13,13 +13,13 @@ enum EntityDirection{
 class GameLayer : public Layer{
 public:
 	static Scene* createScene();
-	virtual bool init();
+	bool init();
 	CREATE_FUNC(GameLayer);
 
 	void gamePause();
 
-	virtual void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
-	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
+	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 private:
 	//玩家信息
 	Player* _player;
