@@ -1,35 +1,41 @@
 ﻿#include "Player.h"
+#include "ActionTool.h"
 
 USING_NS_CC;
 
-void Player::InitPlayerSprite(char *_playerName, int _level){
-	playerSprite = NULL;
-	m_bCanCrazy = false;
-	m_bIsAction = false;
-	m_bIsJumping = false;
-	HeroDirecton = false;    	// 向右运动
-	playerName = NULL;
-	IsRunning = false;
-	IsAttack = false;
-	IsHurt = false;
-	IsDead = false;
-	pos_x = 0;
-	pos_y = 0;
+bool Player::init(){
+	_playerSprite = NULL;
+	_playerName = NULL;
 
 	m_iCurrentMp = 0.0f;
 	m_iTotleMp = 100.0f;
 	m_iSpeed = 5;
-	playerName = _playerName;
-	m_iCurrentHp = m_iTotleHp = 300.0f * _level;
+	m_iCurrentHp = m_iTotleHp = 100.0f;
 	percentage = 100.0f;
 
+	this->_playerSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("sprite01.png"));
+	this->addChild(_playerSprite);
 
-	auto sprite = DrawNode::create();
-	sprite->drawSolidCircle(Vec2(pos_x, pos_y), 10, 2 * CC_DEGREES_TO_RADIANS(360), 16, Color4F(1, 1, 1, 1));
-	this->playerSprite = sprite;
-	this->addChild(playerSprite);
+	return true;
 }
 
-Node* Player::GetSprite(){
-	return this->playerSprite;
+Sprite* Player::getSprite(){
+	return this->_playerSprite;
+}
+
+void Player::setName(char* playerName){
+	this->_playerName = playerName;
+}
+
+char* Player::getName(){
+	return this->_playerName;
+}
+
+void Player::setAnimation(const char *frameName, float delay){
+	Animate* action = ActionTool::animationWithFrameName(frameName, -1, delay);
+	_playerSprite->runAction(action);
+}
+
+void Player::stopAnimation(){
+	_playerSprite->stopAllActions();
 }
