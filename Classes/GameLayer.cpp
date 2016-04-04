@@ -65,41 +65,54 @@ bool GameLayer::init(){
 
 	//添加键盘事件,领onKeyPressed和onKeyReleased方法生效
 	this->setKeyboardEnabled(true);
+	
+	this->scheduleUpdate();
 	return true;
 }
 
 void GameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event){
-	int playerMaxSpeed = 5;
+	if (!!_player->isHurt){
+		return;
+	}
+
+	float playerMaxSpeed = _player->maxSpeed;
 	switch (keyCode)
 	{
 	case EventKeyboard::KeyCode::KEY_W:
 	case EventKeyboard::KeyCode::KEY_UP_ARROW:
-		this->_playerDirection = EntityDirection::Up;
-		this->_playerSpeed = playerMaxSpeed;
+		_player->direction = EntityDirection::Up;
+		_player->currentSpeed = playerMaxSpeed;
 		break;
 	case EventKeyboard::KeyCode::KEY_A:
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		this->_playerDirection = EntityDirection::Left;
-		this->_playerSpeed = playerMaxSpeed;
+		_player->direction = EntityDirection::Left;
+		_player->currentSpeed = playerMaxSpeed;
 		break;
 	case EventKeyboard::KeyCode::KEY_S:
 	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		this->_playerDirection = EntityDirection::Down;
-		this->_playerSpeed = playerMaxSpeed;
+		_player->direction = EntityDirection::Down;
+		_player->currentSpeed = playerMaxSpeed;
 		break;
 	case EventKeyboard::KeyCode::KEY_D:
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		this->_playerDirection = EntityDirection::Right;
-		this->_playerSpeed = playerMaxSpeed;
+		_player->direction = EntityDirection::Right;
+		_player->currentSpeed = playerMaxSpeed;
 		break;
 	default:
-		this->_playerSpeed = 0;
+		_player->currentSpeed = 0;
 		break;
 	}
-
-	cocos2d::log("%d", _playerDirection);
 }
 
 void GameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event){
-	this->_playerSpeed = 0;
+	_player->currentSpeed = 0;
+}
+
+void GameLayer::update(float delta){
+	//移动玩家位置
+	if (!_player->isHurt && _player->currentSpeed > 0){
+		auto direcion = _player->direction;
+
+		//todo 移动地图
+	}
 }

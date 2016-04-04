@@ -7,11 +7,17 @@ bool Player::init(){
 	_playerSprite = NULL;
 	_playerName = NULL;
 
-	m_iCurrentMp = 0.0f;
-	m_iTotleMp = 100.0f;
-	m_iSpeed = 5;
-	m_iCurrentHp = m_iTotleHp = 100.0f;
+	currentHp = totalHp = 100.0f;
+	currentMp = totalMp = 100.0f;
+
 	percentage = 100.0f;
+
+	isHurt = false;
+	isMove = false;
+	direction = EntityDirection::Down;
+
+	currentSpeed = 0;
+	maxSpeed = 5;
 
 	this->_playerSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("sprite01.png"));
 	this->addChild(_playerSprite);

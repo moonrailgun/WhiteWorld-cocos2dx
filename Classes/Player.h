@@ -4,6 +4,10 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+enum EntityDirection{
+	Up, Down, Left, Right
+};
+
 class Player : public Node
 {
 public:
@@ -22,13 +26,20 @@ public:
 	void stopAnimation();
 
 	// HP & MP 值
-	float m_iCurrentHp;
-	float m_iTotleHp;
-	float m_iCurrentMp;
-	float m_iTotleMp;
+	float currentHp;
+	float totalHp;
+	float currentMp;
+	float totalMp;
+
+	// 状态
+	bool isHurt;
+	bool isMove;
+	EntityDirection direction;
 
 	float percentage;
-	float m_iSpeed;
+
+	float currentSpeed;
+	float maxSpeed;
 
 	CREATE_FUNC(Player);
 private:

@@ -6,9 +6,7 @@
 
 USING_NS_CC;
 
-enum EntityDirection{
-	Up,Down,Left,Right
-};
+
 
 class GameLayer : public Layer{
 public:
@@ -20,11 +18,10 @@ public:
 
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
+	void update(float delta);
 private:
 	//玩家信息
 	Player* _player;
-	EntityDirection _playerDirection;
-	int _playerSpeed;
 };
 
 #endif
