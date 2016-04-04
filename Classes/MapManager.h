@@ -8,14 +8,14 @@ USING_NS_CC;
 
 class GameLayer;
 
-class MapManager: public Ref{
-public :
+class MapManager : public Ref{
+public:
 	bool init();
 	CREATE_FUNC(MapManager);
 
 	static MapManager* createManager(GameLayer* gameLayer);
 
-	bool loadMap(char *mapName,int mapZoom = 2);//加载地图
+	bool loadMap(char *mapName, int mapZoom = 2);//加载地图
 	void setSelectedHighlight();//设置选中高亮
 
 	TMXTiledMap* getMap();
@@ -23,7 +23,7 @@ public :
 	Size getMapSize();
 	int getMapZoom();
 	GameLayer* getGameLayer();
-	void moveMap(Player* player);
+	void moveMap(Player* player, Vec2 pos);
 
 	Sprite* selectedBlock;
 	DrawNode* selectedBlockHighLight;

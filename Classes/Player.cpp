@@ -23,15 +23,18 @@ bool Player::init(){
 	this->_playerSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("sprite01.png"));
 	this->addChild(_playerSprite);
 
+	_playerSprite->setScale(2);
+
 	return true;
 }
 
+//判定玩家位置是否在画面中间
 bool Player::judgePosition(){
-	if ((this->getPosition() - WINSIZE) > Vec2(5, 5)){
+	Vec2 delta = this->getPosition() - WINSIZE / 2;//玩家位置距离中点距离
+	if (abs( delta.x) > 10 || abs(delta.y) > 10 ){
 		return false;
 	}
-	else
-	{
+	else {
 		return true;
 	}
 }

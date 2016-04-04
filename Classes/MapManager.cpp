@@ -55,10 +55,10 @@ bool MapManager::loadMap(char *mapName, int mapZoom){
 	return true;
 }
 
-void MapManager::moveMap(Player* player){
-	//玩家在画面中间地图才移动
-	if (player->judgePosition()){
-		log("todo 移动地图");
+void MapManager::moveMap(Player* player, Vec2 pos){
+	//玩家在画面边缘地图才移动
+	if (!player->judgePosition()){
+		_currentMap->setPosition(pos);
 	}
 }
 

@@ -135,35 +135,15 @@ void GameLayer::update(float delta){
 		default:
 			break;
 		}
-		_player->setPosition(_player->getPosition() + delta);
-		/*
-		//todo 移动地图
-		if (_player->judgePosition()){
-		//当玩家在画面中间时，移动地图
-		mapManager->moveMap(_player);
+
+		if (!_player->judgePosition()){
+			//当玩家不在画面中间时，移动地图
+			mapManager->moveMap(_player, mapManager->getMap()->getPosition() - delta);
 		}
 		else
 		{
-		//当玩家在画面边缘时，移动玩家
-		Vec2 delta = Vec2::ZERO;
-		switch (direcion){
-		case EntityDirection::Up:
-		delta = Vec2(0, currentSpeed);
-		break;
-		case EntityDirection::Down:
-		delta = Vec2(0, -currentSpeed);
-		break;
-		case EntityDirection::Left:
-		delta = Vec2(-currentSpeed, 0);
-		break;
-		case EntityDirection::Right:
-		delta = Vec2(currentSpeed, 0);
-		break;
-		default:
-		break;
+			//当玩家在画面中间时，移动玩家
+			_player->setPosition(_player->getPosition() + delta);
 		}
-
-		_player->setPosition(_player->getPosition() + delta);
-		}*/
 	}
 }
