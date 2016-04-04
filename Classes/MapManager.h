@@ -2,6 +2,7 @@
 #define __MapManager__H__
 
 #include "cocos2d.h"
+#include "Player.h"
 
 USING_NS_CC;
 
@@ -22,6 +23,7 @@ public :
 	Size getMapSize();
 	int getMapZoom();
 	GameLayer* getGameLayer();
+	void moveMap(Player* player);
 
 	Sprite* selectedBlock;
 	DrawNode* selectedBlockHighLight;

@@ -55,6 +55,13 @@ bool MapManager::loadMap(char *mapName, int mapZoom){
 	return true;
 }
 
+void MapManager::moveMap(Player* player){
+	//玩家在画面中间地图才移动
+	if (player->judgePosition()){
+		log("todo 移动地图");
+	}
+}
+
 void MapManager::setSelectedHighlight(){
 	if (_gameLayer == NULL || _currentMap == NULL){
 		return;

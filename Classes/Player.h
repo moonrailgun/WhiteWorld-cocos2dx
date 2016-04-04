@@ -24,6 +24,8 @@ public:
 	void setAnimation(const char *frameName, float delay);
 	// 停止动画
 	void stopAnimation();
+	//判断位置是否在中心
+	bool judgePosition();
 
 	// HP & MP 值
 	float currentHp;

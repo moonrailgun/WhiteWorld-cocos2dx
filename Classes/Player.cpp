@@ -1,5 +1,6 @@
 ﻿#include "Player.h"
 #include "ActionTool.h"
+#include "GlobalDefine.h"
 
 USING_NS_CC;
 
@@ -23,6 +24,16 @@ bool Player::init(){
 	this->addChild(_playerSprite);
 
 	return true;
+}
+
+bool Player::judgePosition(){
+	if ((this->getPosition() - WINSIZE) > Vec2(5, 5)){
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 Sprite* Player::getSprite(){

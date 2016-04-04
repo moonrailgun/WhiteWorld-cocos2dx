@@ -65,7 +65,7 @@ bool GameLayer::init(){
 
 	//添加键盘事件,领onKeyPressed和onKeyReleased方法生效
 	this->setKeyboardEnabled(true);
-	
+
 	this->scheduleUpdate();
 	return true;
 }
@@ -105,14 +105,65 @@ void GameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event){
 }
 
 void GameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event){
-	_player->currentSpeed = 0;
+	if (_player->currentSpeed != 0){
+		_player->currentSpeed = 0;
+	}
 }
 
 void GameLayer::update(float delta){
 	//移动玩家位置
+	_player->isMove = false;
 	if (!_player->isHurt && _player->currentSpeed > 0){
+		_player->isMove = true;
 		auto direcion = _player->direction;
+		float currentSpeed = _player->currentSpeed;
 
+		Vec2 delta = Vec2::ZERO;
+		switch (direcion){
+		case EntityDirection::Up:
+			delta = Vec2(0, currentSpeed);
+			break;
+		case EntityDirection::Down:
+			delta = Vec2(0, -currentSpeed);
+			break;
+		case EntityDirection::Left:
+			delta = Vec2(-currentSpeed, 0);
+			break;
+		case EntityDirection::Right:
+			delta = Vec2(currentSpeed, 0);
+			break;
+		default:
+			break;
+		}
+		_player->setPosition(_player->getPosition() + delta);
+		/*
 		//todo 移动地图
+		if (_player->judgePosition()){
+		//当玩家在画面中间时，移动地图
+		mapManager->moveMap(_player);
+		}
+		else
+		{
+		//当玩家在画面边缘时，移动玩家
+		Vec2 delta = Vec2::ZERO;
+		switch (direcion){
+		case EntityDirection::Up:
+		delta = Vec2(0, currentSpeed);
+		break;
+		case EntityDirection::Down:
+		delta = Vec2(0, -currentSpeed);
+		break;
+		case EntityDirection::Left:
+		delta = Vec2(-currentSpeed, 0);
+		break;
+		case EntityDirection::Right:
+		delta = Vec2(currentSpeed, 0);
+		break;
+		default:
+		break;
+		}
+
+		_player->setPosition(_player->getPosition() + delta);
+		}*/
 	}
 }
