@@ -19,7 +19,7 @@ public:
 	void setMapToCenter(Vec2 anchor = Vec2(0.5, 0.5));
 	void setPlayerToCenter();
 
-	void tryMovePlayer();
+	void tryMovePlayer(Vec2 toPos);
 private:
 	TMXTiledMap* _map;
 	Player* _player;
