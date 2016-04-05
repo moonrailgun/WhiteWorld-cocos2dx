@@ -48,12 +48,12 @@ Vec2 GameMap::getTileCoordinateAt(Vec2 posInPixel){
 	return Vec2(x, y);
 }
 
-Vec2 GameMap::getTilePosBy(Vec2 tileCoordinate){
+Vec2 GameMap::getTilePosBy(Vec2 tileCoordinate) {
 	Size tileSize = this->_map->getTileSize();
 	Size mapSize = this->_map->getMapSize();
 	float x = floor(tileCoordinate.x * tileSize.width);
 	float y = floor(mapSize.height * tileSize.height - tileCoordinate.y * tileSize.height);
-	
+
 	return Vec2(x, y);
 }
 
@@ -69,4 +69,28 @@ void GameMap::moveMapTo(Vec2 pos){
 void GameMap::setMapToCenter(Vec2 anchor){
 	this->_map->setAnchorPoint(Vec2(0.5, 0.5));//设置锚点
 	this->_map->setPosition(WINSIZE / 2);//设置居中
+}
+
+void GameMap::setPlayerToCenter(){
+	if (_player == NULL || _map == NULL){ return; }
+
+	auto playerPos = _player->getPosition();
+	auto mapPos = _map->getPosition();
+	_player->setPosition(WINSIZE / 2);
+	_map->setPosition(mapPos + WINSIZE / 2 - playerPos);
+}
+
+void GameMap::tryMovePlayer(Vec2 toPos){
+	Vec2 coor = getTileCoordinateAt(toPos);
+	Size mapSize = this->_map->getMapSize();
+
+	if (coor.x > mapSize.width || coor.x < 0 || coor.y > mapSize.height || coor.y < 0){
+		return;//要到达目标在地图外
+	}
+
+	if (_map->getLayer("block")->getTileAt(coor) != NULL){
+		return;//要到达的目标有障碍物
+	}
+
+	_player->setPosition(toPos);
 }
