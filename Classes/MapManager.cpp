@@ -3,6 +3,7 @@
 #include "SimpleAudioEngine.h"
 #include "GameLayer.h"
 #include "GlobalData.h"
+#include "GlobalDefine.h"
 
 USING_NS_CC;
 bool MapManager::init(){
@@ -62,6 +63,17 @@ void MapManager::moveMap(Player* player, Vec2 pos){
 	}
 }
 
+Player* MapManager::loadPlayer(){
+	if (_gameLayer == NULL||_currentMap == NULL){ return NULL; }
+
+	_player = Player::create();
+	_gameLayer->addChild(_player, 3);
+	_player->setAnimation("sprite", 0.15f);
+	_player->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
+
+	return _player;
+}
+
 void MapManager::setSelectedHighlight(){
 	if (_gameLayer == NULL || _currentMap == NULL){
 		return;
@@ -116,4 +128,7 @@ Size MapManager::getMapSize(){
 }
 int MapManager::getMapZoom(){
 	return this->_mapZoom;
+}
+Player* MapManager::getPlayer(){
+	return this->_player;
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="21">
  <tileset firstgid="1" name="Dungeon_C" tilewidth="32" tileheight="32">
   <image source="Dungeon_C.png" width="512" height="512"/>
  </tileset>
@@ -16,9 +16,9 @@
    eJzdzjkSgCAUBNF//1uIaI4suWznssMJMWWqXtLRmK3vgMMpzePCLS3gQZSWkFGkvaho0joG5o9fO+0DxrYMoA==
   </data>
  </layer>
- <objectgroup name="edge" visible="0">
-  <object id="12" x="7.33333" y="8.66667">
-   <polyline points="0,0 0,304 303.333,304.667 304,-0.666667 0,-0.666667"/>
+ <objectgroup name="players">
+  <object id="13" name="playerSpawnPoint" x="156.167" y="229.167">
+   <ellipse/>
   </object>
  </objectgroup>
 </map>

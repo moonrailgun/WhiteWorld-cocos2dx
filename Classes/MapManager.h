@@ -23,7 +23,11 @@ public:
 	Size getMapSize();
 	int getMapZoom();
 	GameLayer* getGameLayer();
+	Player* getPlayer();
 	void moveMap(Player* player, Vec2 pos);
+
+	Player* loadPlayer();//加载玩家
+	void move();
 
 	Sprite* selectedBlock;
 	DrawNode* selectedBlockHighLight;
@@ -36,6 +40,7 @@ private:
 	Size _currentMapSize;
 	int _mapZoom;
 	Size _tileSize;
+	Player* _player;
 };
 
 #endif

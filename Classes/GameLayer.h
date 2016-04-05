@@ -6,8 +6,6 @@
 
 USING_NS_CC;
 
-
-
 class GameLayer : public Layer{
 public:
 	static Scene* createScene();

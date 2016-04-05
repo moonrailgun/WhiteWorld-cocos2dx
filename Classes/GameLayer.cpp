@@ -6,6 +6,7 @@
 #include "DialogueManager.h"
 #include "DialogueHelper.h"
 #include "Player.h"
+#include "GameMap.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -43,16 +44,19 @@ bool GameLayer::init(){
 
 	playerName = "12456";
 
+	auto gameMap = GameMap::createGameMap("home");
+	gameMap->loadPlayer();
+	//gameMap->setAnchorPoint(Vec2::ZERO);
+	//gameMap->setMapZoom(2);
+	addChild(gameMap);
+
+	/*
 	mapManager = MapManager::createManager(this);
 	mapManager->loadMap("home");
 	mapManager->getMap()->setAnchorPoint(Vec2(0.5, 0.5));
 	mapManager->getMap()->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	mapManager->setSelectedHighlight();
-
-	_player = Player::create();
-	this->addChild(_player, 3);
-	_player->setAnimation("sprite", 0.15f);
-	_player->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
+	_player = mapManager->loadPlayer();*/
 
 	/*
 	dialogueManager = DialogueManager::create();
@@ -112,7 +116,7 @@ void GameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event){
 
 void GameLayer::update(float delta){
 	//移动玩家位置
-	_player->isMove = false;
+	return;//暂时弃用
 	if (!_player->isHurt && _player->currentSpeed > 0){
 		_player->isMove = true;
 		auto direcion = _player->direction;
