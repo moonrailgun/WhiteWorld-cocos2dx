@@ -144,20 +144,19 @@ ValueMap GameMap::getInspectObjectAt(Vec2 pos){
 
 void GameMap::inspect(){
 	auto direcion = _player->direction;
-	float currentSpeed = _player->currentSpeed;
 	Vec2 delta = Vec2::ZERO;
 	switch (direcion){
 	case EntityDirection::Up:
-		delta = Vec2(0, currentSpeed);
+		delta = Vec2(0, inspectDis);
 		break;
 	case EntityDirection::Down:
-		delta = Vec2(0, -currentSpeed);
+		delta = Vec2(0, -inspectDis);
 		break;
 	case EntityDirection::Left:
-		delta = Vec2(-currentSpeed, 0);
+		delta = Vec2(-inspectDis, 0);
 		break;
 	case EntityDirection::Right:
-		delta = Vec2(currentSpeed, 0);
+		delta = Vec2(inspectDis, 0);
 		break;
 	default:
 		break;

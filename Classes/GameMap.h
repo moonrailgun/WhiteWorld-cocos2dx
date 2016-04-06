@@ -27,6 +27,7 @@ private:
 	TMXTiledMap* _map;
 	Player* _player;
 	float _mapZoom = 1;
+	float inspectDis = 32.0f;
 	std::vector<Vec2> _blockTileCoorList;
 	std::vector<ValueMap> _inspectObjects;
 	
