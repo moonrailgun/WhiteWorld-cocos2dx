@@ -5,7 +5,6 @@ GameMap* GameMap::createGameMap(char* mapName){
 	GameMap* gameMap = GameMap::create();
 
 	auto map = GameMap::loadMap(mapName);
-	//map->setAnchorPoint(Vec2(0.5, 0.5));//设置锚点
 	map->setPosition(gameMap->getContentSize() / 2 - map->getContentSize() / 2);//设置居中
 	gameMap->_map = map;
 	gameMap->addChild(map);
@@ -36,8 +35,7 @@ Player* GameMap::loadPlayer(){
 	auto tile = _map->getLayer("bottom")->getTileAt(getTileCoordinateAt(Vec2(x, y)));
 	tile->setColor(Color3B::RED);
 
-	Vec2 mapAnchor = this->_map->getAnchorPoint();
-	Vec2 pos = tile->getPosition() + _map->getPosition() - getMapLeftBottomPos() + tile->getContentSize() / 2;
+	Vec2 pos = tile->getPosition() + getMapLeftBottomPos() + tile->getContentSize() / 2;
 	this->_player->setPosition(pos);
 
 	return player;
