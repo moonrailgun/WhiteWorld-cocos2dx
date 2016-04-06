@@ -20,7 +20,9 @@ public:
 	void setPlayerToCenter();
 
 	void tryMovePlayer(Vec2 toPos);
-	
+	//交互操作
+	void inspect();
+	void inspectWith(Vec2 targetMapPos);
 private:
 	TMXTiledMap* _map;
 	Player* _player;

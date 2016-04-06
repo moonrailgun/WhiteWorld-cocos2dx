@@ -100,8 +100,8 @@ void GameMap::tryMovePlayer(Vec2 toPos) {
 		return;//要到达的目标有障碍物
 	}
 
-	ValueMap a = getInspectObjectAt(toPos);
-	if (a != ValueMapNull && a["isBlock"].asBool() == true){
+	ValueMap inspectObject = getInspectObjectAt(toPos);
+	if (inspectObject != ValueMapNull && inspectObject["isBlock"].asBool() == true){
 		return;//当要到达的位置有可以调查的物体且该物体属性为可以被阻挡时
 	}
 
@@ -140,4 +140,41 @@ ValueMap GameMap::getInspectObjectAt(Vec2 pos){
 	}
 
 	return ValueMapNull;
+}
+
+void GameMap::inspect(){
+	auto direcion = _player->direction;
+	float currentSpeed = _player->currentSpeed;
+	Vec2 delta = Vec2::ZERO;
+	switch (direcion){
+	case EntityDirection::Up:
+		delta = Vec2(0, currentSpeed);
+		break;
+	case EntityDirection::Down:
+		delta = Vec2(0, -currentSpeed);
+		break;
+	case EntityDirection::Left:
+		delta = Vec2(-currentSpeed, 0);
+		break;
+	case EntityDirection::Right:
+		delta = Vec2(currentSpeed, 0);
+		break;
+	default:
+		break;
+	}
+
+	Vec2 targetPos = _player->getPosition() + delta;
+	inspectWith(targetPos);
+}
+
+void GameMap::inspectWith(Vec2 targetMapPos){
+	auto inspectObject = getInspectObjectAt(targetMapPos);
+	if (inspectObject != ValueMapNull){
+		std::string inspectType = inspectObject["type"].asString();
+		if (inspectType == "teleport"){
+			//传送类型
+			std::string inspectTo = inspectObject["to"].asString();
+			log("is try teleport to %s", inspectTo);
+		}
+	}
 }
