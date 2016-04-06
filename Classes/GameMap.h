@@ -20,11 +20,13 @@ public:
 	void setPlayerToCenter();
 
 	void tryMovePlayer(Vec2 toPos);
+	
 private:
 	TMXTiledMap* _map;
 	Player* _player;
 	float _mapZoom = 1;
-	std::vector<Vec2> blockTileCoorList;
+	std::vector<Vec2> _blockTileCoorList;
+	std::vector<ValueMap> _inspectObjects;
 	
 	//通过在该层中的像素坐标获取图块坐标
 	Vec2 getTileCoordinateAt(Vec2 posInPixel);
@@ -32,8 +34,10 @@ private:
 	Vec2 getTilePosBy(Vec2 tileCoordinate);
 	//获取地图左下角坐标
 	Vec2 getMapLeftBottomPos();
-	//注册不可达到的地块坐标
-	void registerBlockTile();
+	//注册交互对象
+	void registerInspectObjects();
+	//根据坐标获取调查对象
+	ValueMap getInspectObjectAt(Vec2 pos);
 };
 
 #endif

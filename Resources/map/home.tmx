@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="21">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="27">
  <tileset firstgid="1" name="Dungeon_C" tilewidth="32" tileheight="32">
   <image source="Dungeon_C.png" width="512" height="512"/>
  </tileset>
@@ -11,7 +11,7 @@
    eJxjZGRgYAJiRgK0IBALEUErArESETQh++hpLzaMzR5sGJs92DAhf8IwAA3jBpM=
   </data>
  </layer>
- <layer name="block" width="10" height="10">
+ <layer name="object" width="10" height="10">
   <data encoding="base64" compression="zlib">
    eJzdzjkSgCAUBNF//1uIaI4suWznssMJMWWqXtLRmK3vgMMpzePCLS3gQZSWkFGkvaho0joG5o9fO+0DxrYMoA==
   </data>
@@ -19,6 +19,22 @@
  <objectgroup name="players">
   <object id="13" name="playerSpawnPoint" x="156.167" y="229.167">
    <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="inspect">
+  <object id="21" name="city_dim" x="33.3333" y="35.6667" width="93.3333" height="88.3333">
+   <properties>
+    <property name="isBlock" value="true"/>
+    <property name="to" value="city_dim"/>
+    <property name="type" value="teleport"/>
+   </properties>
+  </object>
+  <object id="22" name="city_dawn" x="192" y="35" width="94.5" height="88.5">
+   <properties>
+    <property name="isBlock" value="true"/>
+    <property name="to" value="city_dawn"/>
+    <property name="type" value="teleport;"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

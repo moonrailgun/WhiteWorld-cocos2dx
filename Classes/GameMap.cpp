@@ -7,6 +7,7 @@ GameMap* GameMap::createGameMap(char* mapName){
 	auto map = GameMap::loadMap(mapName);
 	map->setPosition(gameMap->getContentSize() / 2 - map->getContentSize() / 2);//设置居中
 	gameMap->_map = map;
+	gameMap->registerInspectObjects();
 	gameMap->addChild(map);
 
 	return gameMap;
@@ -15,10 +16,14 @@ GameMap* GameMap::createGameMap(char* mapName){
 TMXTiledMap* GameMap::loadMap(char *mapName){
 	auto name = String::createWithFormat("map/%s.tmx", mapName);
 	log("is loading map which named %s [%s]", mapName, name->getCString());
-	auto map = TMXTiledMap::create(name->getCString());
-
-	log("loading completed");
-
+	auto map = TMXTiledMap::create(name->getCString());//加载地图对象
+	if (map == NULL){
+		log("loading error: no such tmx file");
+	}
+	else
+	{
+		log("loading completed");
+	}
 	return map;
 }
 
@@ -90,8 +95,14 @@ void GameMap::tryMovePlayer(Vec2 toPos) {
 		return;//要到达目标在地图外
 	}
 
-	if (_map->getLayer("block")->getTileAt(coor) != NULL){
+	TMXLayer* blockLayer = _map->getLayer("block");
+	if (blockLayer != NULL &&  blockLayer->getTileAt(coor) != NULL){
 		return;//要到达的目标有障碍物
+	}
+
+	ValueMap a = getInspectObjectAt(toPos);
+	if (a != ValueMapNull && a["isBlock"].asBool() == true){
+		return;//当要到达的位置有可以调查的物体且该物体属性为可以被阻挡时
 	}
 
 	_player->setPosition(toPos);
@@ -101,6 +112,32 @@ Vec2 GameMap::getMapLeftBottomPos(){
 	return _map->getPosition() - Vec2(_map->getAnchorPoint().x * _map->getContentSize().width, _map->getAnchorPoint().y * _map->getContentSize().height);
 }
 
-void GameMap::registerBlockTile(){
+void GameMap::registerInspectObjects(){
+	auto group = _map->getObjectGroup("inspect");
+	if (group == NULL){ return; }
 
+	_inspectObjects.clear();//清空之前元素
+	auto objects = group->getObjects();
+	for (auto object : objects){
+		auto obj = object.asValueMap();
+		_inspectObjects.push_back(obj);
+	}
+}
+
+ValueMap GameMap::getInspectObjectAt(Vec2 pos){
+	Vec2 mapPos = pos - getMapLeftBottomPos();
+
+	for (ValueMap object : _inspectObjects){
+		float width = object["width"].asFloat();
+		float height = object["height"].asFloat();
+		float x = object["x"].asFloat();
+		//float y = _map->getContentSize().height - object["y"].asFloat() - height;
+		float y = object["y"].asFloat();
+
+		if (mapPos.x >= x && mapPos.x <= x + width && mapPos.y >= y && mapPos.y <= y + height){
+			return object;
+		}
+	}
+
+	return ValueMapNull;
 }
