@@ -44,10 +44,9 @@ bool GameLayer::init(){
 
 	playerName = "12456";
 
-	auto gameMap = GameMap::createGameMap("home");
-	gameMap->loadPlayer();
-	//gameMap->setAnchorPoint(Vec2::ZERO);
-	//gameMap->setMapZoom(2);
+	auto gameMap = this->_gameMap = GameMap::createGameMap("home");
+	_player = gameMap->loadPlayer();
+	gameMap->setMapZoom(2);
 	addChild(gameMap);
 
 	/*
@@ -116,7 +115,6 @@ void GameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event){
 
 void GameLayer::update(float delta){
 	//移动玩家位置
-	return;//暂时弃用
 	if (!_player->isHurt && _player->currentSpeed > 0){
 		_player->isMove = true;
 		auto direcion = _player->direction;
@@ -140,14 +138,6 @@ void GameLayer::update(float delta){
 			break;
 		}
 
-		if (!_player->judgePosition()){
-			//当玩家不在画面中间时，移动地图
-			mapManager->moveMap(_player, mapManager->getMap()->getPosition() - delta);
-		}
-		else
-		{
-			//当玩家在画面中间时，移动玩家
-			_player->setPosition(_player->getPosition() + delta);
-		}
+		_gameMap->tryMovePlayer(_player->getPosition() + delta);
 	}
 }

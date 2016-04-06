@@ -24,9 +24,16 @@ private:
 	TMXTiledMap* _map;
 	Player* _player;
 	float _mapZoom = 1;
+	std::vector<Vec2> blockTileCoorList;
 	
+	//通过在该层中的像素坐标获取图块坐标
 	Vec2 getTileCoordinateAt(Vec2 posInPixel);
+	//通过图块坐标获取像素坐标
 	Vec2 getTilePosBy(Vec2 tileCoordinate);
+	//获取地图左下角坐标
+	Vec2 getMapLeftBottomPos();
+	//注册不可达到的地块坐标
+	void registerBlockTile();
 };
 
 #endif

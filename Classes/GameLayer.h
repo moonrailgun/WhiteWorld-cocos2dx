@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include "GameMap.h"
 
 USING_NS_CC;
 
@@ -20,6 +21,7 @@ public:
 private:
 	//玩家信息
 	Player* _player;
+	GameMap* _gameMap;
 };
 
 #endif

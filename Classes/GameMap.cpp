@@ -5,9 +5,8 @@ GameMap* GameMap::createGameMap(char* mapName){
 	GameMap* gameMap = GameMap::create();
 
 	auto map = GameMap::loadMap(mapName);
-	map->setAnchorPoint(Vec2(0.5, 0.5));//设置锚点
-	map->setPosition(gameMap->getContentSize() / 2);//设置居中
-	log("size %f,%f", gameMap->getContentSize().width, gameMap->getContentSize().height);
+	//map->setAnchorPoint(Vec2(0.5, 0.5));//设置锚点
+	map->setPosition(gameMap->getContentSize() / 2 - map->getContentSize() / 2);//设置居中
 	gameMap->_map = map;
 	gameMap->addChild(map);
 
@@ -27,14 +26,19 @@ TMXTiledMap* GameMap::loadMap(char *mapName){
 Player* GameMap::loadPlayer(){
 	auto player = Player::create();
 	this->_player = player;
+	this->_player->setAnimation("sprite", 0.15f);
 	this->addChild(player);
 
 	auto group = _map->getObjectGroup("players");
 	auto playerSpawnPoint = group->getObject("playerSpawnPoint");
-	auto x = playerSpawnPoint["x"];
-	auto y = playerSpawnPoint["y"];
-	auto tile = _map->getLayer("bottom")->getTileAt(getTileCoordinateAt(Vec2(x.asFloat(), y.asFloat())));
+	auto x = playerSpawnPoint["x"].asFloat();
+	auto y = playerSpawnPoint["y"].asFloat();
+	auto tile = _map->getLayer("bottom")->getTileAt(getTileCoordinateAt(Vec2(x, y)));
 	tile->setColor(Color3B::RED);
+
+	Vec2 mapAnchor = this->_map->getAnchorPoint();
+	Vec2 pos = tile->getPosition() + _map->getPosition() - getMapLeftBottomPos() + tile->getContentSize() / 2;
+	this->_player->setPosition(pos);
 
 	return player;
 }
@@ -80,11 +84,11 @@ void GameMap::setPlayerToCenter(){
 	_map->setPosition(mapPos + WINSIZE / 2 - playerPos);
 }
 
-void GameMap::tryMovePlayer(Vec2 toPos){
-	Vec2 coor = getTileCoordinateAt(toPos);
+void GameMap::tryMovePlayer(Vec2 toPos) {
+	Vec2 coor = getTileCoordinateAt(toPos - getMapLeftBottomPos());
 	Size mapSize = this->_map->getMapSize();
 
-	if (coor.x > mapSize.width || coor.x < 0 || coor.y > mapSize.height || coor.y < 0){
+	if (coor.x >= mapSize.width || coor.x < 0 || coor.y >= mapSize.height || coor.y < 0){
 		return;//要到达目标在地图外
 	}
 
@@ -93,4 +97,12 @@ void GameMap::tryMovePlayer(Vec2 toPos){
 	}
 
 	_player->setPosition(toPos);
+}
+
+Vec2 GameMap::getMapLeftBottomPos(){
+	return _map->getPosition() - Vec2(_map->getAnchorPoint().x * _map->getContentSize().width, _map->getAnchorPoint().y * _map->getContentSize().height);
+}
+
+void GameMap::registerBlockTile(){
+
 }

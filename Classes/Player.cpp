@@ -23,8 +23,6 @@ bool Player::init(){
 	this->_playerSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("sprite01.png"));
 	this->addChild(_playerSprite);
 
-	_playerSprite->setScale(2);
-
 	return true;
 }
 
