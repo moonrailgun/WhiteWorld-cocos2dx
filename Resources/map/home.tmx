@@ -33,7 +33,7 @@
    <properties>
     <property name="isBlock" value="true"/>
     <property name="to" value="city_dawn"/>
-    <property name="type" value="teleport;"/>
+    <property name="type" value="teleport"/>
    </properties>
   </object>
  </objectgroup>

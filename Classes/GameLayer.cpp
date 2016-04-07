@@ -74,6 +74,8 @@ bool GameLayer::init(){
 }
 
 void GameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event){
+	_isKeyNum++;
+
 	if (!!_player->isHurt){
 		return;
 	}
@@ -101,6 +103,9 @@ void GameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event){
 		_player->direction = EntityDirection::Right;
 		_player->currentSpeed = playerMaxSpeed;
 		break;
+	case EventKeyboard::KeyCode::KEY_E:
+		_gameMap->inspect();
+		break;
 	default:
 		_player->currentSpeed = 0;
 		break;
@@ -108,7 +113,9 @@ void GameLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event){
 }
 
 void GameLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event){
-	if (_player->currentSpeed != 0){
+	_isKeyNum--;
+
+	if (_isKeyNum == 0 && _player->currentSpeed != 0){
 		_player->currentSpeed = 0;
 	}
 }

@@ -166,14 +166,14 @@ void GameMap::inspect(){
 	inspectWith(targetPos);
 }
 
-void GameMap::inspectWith(Vec2 targetMapPos){
+void GameMap::inspectWith(Vec2 targetMapPos) {
 	auto inspectObject = getInspectObjectAt(targetMapPos);
 	if (inspectObject != ValueMapNull){
 		std::string inspectType = inspectObject["type"].asString();
 		if (inspectType == "teleport"){
 			//传送类型
 			std::string inspectTo = inspectObject["to"].asString();
-			log("is try teleport to %s", inspectTo);
+			log("is try teleport to %s", inspectTo.c_str());
 		}
 	}
 }
