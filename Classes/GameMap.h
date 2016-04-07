@@ -15,6 +15,8 @@ public:
 	Player* loadPlayer();
 	void setMapZoom(float _mapZoom);
 
+	void onMapLoadCompleted();
+
 	void moveMapTo(Vec2 pos);
 	void setMapToCenter(Vec2 anchor = Vec2(0.5, 0.5));
 	void setPlayerToCenter();

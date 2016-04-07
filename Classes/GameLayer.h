@@ -18,10 +18,13 @@ public:
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
 	void update(float delta);
+	GameMap* getGameMap();
 private:
 	//玩家信息
 	Player* _player;
 	GameMap* _gameMap;
+
+	int _isKeyNum = 0;
 };
 
 #endif

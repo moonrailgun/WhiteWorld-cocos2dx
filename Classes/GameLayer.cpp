@@ -24,6 +24,7 @@ bool GameLayer::init(){
 		return false;
 	}
 
+	//初始化音乐
 	if (getBoolFromXML(MUSIC_KEY)){
 		float music = getFloatFromXML(MUSICVOL)*100.0f;
 		audioEngine->setBackgroundMusicVolume(getFloatFromXML(MUSICVOL));
@@ -40,6 +41,9 @@ bool GameLayer::init(){
 		SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 	}
 
+	//初始化对话管理器
+	dialogueManager = DialogueManager::create();
+	
 	this->setName("game");
 
 	playerName = "12456";
@@ -48,6 +52,12 @@ bool GameLayer::init(){
 	_player = gameMap->loadPlayer();
 	gameMap->setMapZoom(2);
 	addChild(gameMap);
+
+	auto loadMapInitEvent = [&](float tm){
+		log("loadMapInitEvent[%fs]",tm);
+		this->getGameMap()->onMapLoadCompleted();
+	};
+	this->getScheduler()->schedule(loadMapInitEvent, this, 0.0f, 0, 0.0f, false, "loadMapInitEvent");
 
 	/*
 	mapManager = MapManager::createManager(this);
@@ -58,7 +68,7 @@ bool GameLayer::init(){
 	_player = mapManager->loadPlayer();*/
 
 	/*
-	dialogueManager = DialogueManager::create();
+	
 	dialogueManager->showDialogue(this);
 	dialogueManager->updateDialogueText("test string");
 
@@ -147,4 +157,8 @@ void GameLayer::update(float delta){
 
 		_gameMap->tryMovePlayer(_player->getPosition() + delta);
 	}
+}
+
+GameMap* GameLayer::getGameMap(){
+	return this->_gameMap;
 }

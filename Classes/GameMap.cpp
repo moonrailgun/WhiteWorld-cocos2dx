@@ -1,5 +1,7 @@
 ﻿#include "GameMap.h"
 #include "GlobalDefine.h"
+#include "GlobalData.h"
+#include "DialogueHelper.h"
 
 GameMap* GameMap::createGameMap(char* mapName){
 	GameMap* gameMap = GameMap::create();
@@ -17,6 +19,7 @@ TMXTiledMap* GameMap::loadMap(char *mapName){
 	auto name = String::createWithFormat("map/%s.tmx", mapName);
 	log("is loading map which named %s [%s]", mapName, name->getCString());
 	auto map = TMXTiledMap::create(name->getCString());//加载地图对象
+
 	if (map == NULL){
 		log("loading error: no such tmx file");
 	}
@@ -24,6 +27,7 @@ TMXTiledMap* GameMap::loadMap(char *mapName){
 	{
 		log("loading completed");
 	}
+
 	return map;
 }
 
@@ -67,6 +71,25 @@ Vec2 GameMap::getTilePosBy(Vec2 tileCoordinate) {
 void GameMap::setMapZoom(float _mapZoom){
 	this->_mapZoom = _mapZoom;
 	this->setScale(_mapZoom);
+}
+
+void GameMap::onMapLoadCompleted(){
+	auto map = this->_map;
+	if (map == NULL){
+		log("error: map is null");
+		return;
+	}
+
+	ValueMap properties = map->getProperties();
+	if (properties == ValueMapNull){ return; }
+
+	int triggerPlotId = properties.at("triggerPlotId").asInt();
+	if (triggerPlotId != 0 && dialogueManager != NULL){
+		//触发对话事件
+		auto parentNode = this->getParent();
+		dialogueManager->showDialogue(parentNode);
+		dialogueManager->updateDialogueText("test string");
+	}
 }
 
 void GameMap::moveMapTo(Vec2 pos){

@@ -12,9 +12,9 @@ public:
 	bool init();
 	CREATE_FUNC(DialogueManager);
 
-	bool loadDialogueFromFile(char* fileName);
-	void showDialogue(Layer* layer);
+	void showDialogue(Node* node);
 	void updateDialogueText(const char* text);
+	~DialogueManager();
 private:
 	Scale9Sprite* _dialogueBg;
 	LabelTTF* _dialogueText;
