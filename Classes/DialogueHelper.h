@@ -2,6 +2,7 @@
 #define __DialogueHelper_H__
 
 #include "cocos2d.h"
+#include <unordered_map>
 
 USING_NS_CC;
 
@@ -34,9 +35,10 @@ public:
 	bool initWithFile(const char *xmlFileName);
 	std::vector<DialogueData>* getDialogueAt(int index);
 	std::vector<DialogueData>* getFirstDialogue();
-	std::vector<std::vector<DialogueData>>* getDialogueList();
+	std::unordered_map<int, std::vector<DialogueData>>* getDialogueList();
+	std::vector<DialogueData> getDialogueById(int id);
 private:
-	std::vector<std::vector<DialogueData>> _dialogueList;//todo 后期可以优化为Vector
+	std::unordered_map<int, std::vector<DialogueData>> _dialogueList;//<对话列表ID， 对话序列>
 };
 
 #endif

@@ -13,11 +13,13 @@ DialogueHelper* DialogueHelper::parseWithFile(const char *xmlFileName){
 	//解析
 	auto dialogues = doc->RootElement();
 	for (auto dialogue = dialogues->FirstChildElement("dialogue"); dialogue != NULL; dialogue = dialogue->NextSiblingElement()){
-		std::vector<DialogueData> dialogueData;//数据对象
-		int dialogueId = (int)dialogue->Attribute("id");//暂时不保存
+		//循环添加序列组
+		std::vector<DialogueData> dialogueData;//对话序列组对象
+		int dialogueId = (int)dialogue->Attribute("id");//该对话序列组对象
 		const char* triggerPos = dialogue->Attribute("triggerPos");//暂时不保存
 
 		for (auto content = dialogue->FirstChildElement(); content; content = content->NextSiblingElement()){
+			//循环添加对话序列
 			DialogueData data;//直接使用对象。由系统维护生命周期防止内存泄露
 			std::string contentType = content->Name();
 			if (contentType == "string"){
@@ -38,25 +40,26 @@ DialogueHelper* DialogueHelper::parseWithFile(const char *xmlFileName){
 				data.options = options;
 			}
 			dialogueData.push_back(data);
-			log("loading text：%s", content->GetText());
+			log("loading text: %s", content->GetText());
 		}
 
-		dialogueHelper->_dialogueList.push_back(dialogueData);
+		//dialogueHelper->_dialogueList.push_back(dialogueData);
+		dialogueHelper->_dialogueList[dialogueId] = dialogueData;//重复id后面会覆盖前面的
 	}
 
 	return dialogueHelper;
 }
 
-std::vector<DialogueData>* DialogueHelper::getDialogueAt(int index){
-	return &(this->_dialogueList.at(index));
-}
-
 std::vector<DialogueData>* DialogueHelper::getFirstDialogue(){
-	return &(this->_dialogueList.front());
+	return &(this->_dialogueList[0]);
 }
 
-std::vector<std::vector<DialogueData>>* DialogueHelper::getDialogueList(){
+std::unordered_map<int, std::vector<DialogueData>>* DialogueHelper::getDialogueList(){
 	return &this->_dialogueList;
+}
+
+std::vector<DialogueData> DialogueHelper::getDialogueById(int id){
+	return this->_dialogueList[id];
 }
 
 DialogueHelper::DialogueHelper(){
