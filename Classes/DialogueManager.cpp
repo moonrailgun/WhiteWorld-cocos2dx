@@ -33,6 +33,17 @@ void DialogueManager::showDialogue(Node* node){
 	}
 }
 
+void DialogueManager::hideDialogue(){
+	auto parent = this->_dialogueBg->getParent();
+	if (parent != NULL){
+		parent->removeChild(this->_dialogueBg);
+		parent->removeChild(this->_dialogueText);
+	}
+	else{
+		log("cant remove dialogue box because cant find parent node");
+	}
+}
+
 void DialogueManager::updateDialogueText(const char* text){
 	if (_dialogueText != NULL){
 		_dialogueText->setString(text);
@@ -40,6 +51,10 @@ void DialogueManager::updateDialogueText(const char* text){
 	else{
 		log("variable _dialogueText is null");
 	}
+}
+
+Scale9Sprite* DialogueManager::getDialogueBg(){
+	return this->_dialogueBg;
 }
 
 DialogueManager::~DialogueManager(){

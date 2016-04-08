@@ -13,7 +13,9 @@ public:
 	CREATE_FUNC(DialogueManager);
 
 	void showDialogue(Node* node);
+	void hideDialogue();
 	void updateDialogueText(const char* text);
+	Scale9Sprite* getDialogueBg();
 	~DialogueManager();
 private:
 	Scale9Sprite* _dialogueBg;

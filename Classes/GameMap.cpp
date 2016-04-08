@@ -86,9 +86,35 @@ void GameMap::onMapLoadCompleted(){
 	int triggerPlotId = properties.at("triggerPlotId").asInt();
 	if (triggerPlotId != 0 && dialogueManager != NULL){
 		//触发对话事件
-		auto parentNode = this->getParent();
-		dialogueManager->showDialogue(parentNode);
-		dialogueManager->updateDialogueText("test string");
+		DialogueHelper* dialogueHelper = DialogueHelper::parseWithFile("common");
+		auto dialogue = dialogueHelper->getDialogueById(triggerPlotId);
+		if (!dialogue.empty()){
+			auto parentNode = this->getParent();
+			dialogueManager->showDialogue(parentNode);
+			dialogueManager->updateDialogueText(dialogue.at(0).content.c_str());
+
+			int* dialogueIndex = new int(1);
+			int dialogueMaxIndex = dialogue.size();
+			auto dialogueBg = dialogueManager->getDialogueBg();
+			EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+			listener->onTouchBegan = [dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
+				if (*dialogueIndex >= dialogueMaxIndex){ 
+					//对话完毕
+					dialogueBg->getEventDispatcher()->removeAllEventListeners();
+					dialogueManager->hideDialogue();
+					return true; 
+				}
+
+				DialogueData data = dialogue.at(*dialogueIndex);
+				if (&data != NULL){
+					dialogueManager->updateDialogueText(data.content.c_str());
+					(*dialogueIndex)++;
+				}
+
+				return true;
+			};
+			dialogueBg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, dialogueBg);
+		}
 	}
 }
 
