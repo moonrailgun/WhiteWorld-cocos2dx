@@ -91,25 +91,41 @@ void GameMap::onMapLoadCompleted(){
 		if (!dialogue.empty()){
 			auto parentNode = this->getParent();
 			dialogueManager->showDialogue(parentNode);
-			dialogueManager->updateDialogueText(dialogue.at(0).content.c_str());
+			isShowDialogue = true;
+
+			auto type = dialogue.at(0).type;
+			if (type == DialogueType::string){
+				//文本类型
+				DialogueHelper::updateDialogueText(dialogue.at(0).content.c_str());
+			}
+			else if (type == DialogueType::option){
+				//选项类型
+			}
+
 
 			int* dialogueIndex = new int(1);
 			int dialogueMaxIndex = dialogue.size();
 			auto dialogueBg = dialogueManager->getDialogueBg();
 			EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
-			listener->onTouchBegan = [dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
-				if (*dialogueIndex >= dialogueMaxIndex){ 
-					//对话完毕
-					dialogueBg->getEventDispatcher()->removeAllEventListeners();
+			listener->onTouchBegan = [&, dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
+				//对话完毕
+				if (*dialogueIndex >= dialogueMaxIndex){
+					dialogueBg->getEventDispatcher()->removeEventListenersForTarget(dialogueBg);
 					dialogueManager->hideDialogue();
-					return true; 
+					this->isShowDialogue = false;
+
+					return true;
 				}
 
 				DialogueData data = dialogue.at(*dialogueIndex);
-				if (&data != NULL){
-					dialogueManager->updateDialogueText(data.content.c_str());
-					(*dialogueIndex)++;
+				DialogueType type = data.type;
+				if (type == DialogueType::string) {
+					DialogueHelper::updateDialogueText(data.content.c_str());
 				}
+				else if (type == DialogueType::option) {
+					DialogueHelper::updateDialogueText("");
+				}
+				(*dialogueIndex)++;
 
 				return true;
 			};
@@ -137,6 +153,9 @@ void GameMap::setPlayerToCenter(){
 }
 
 void GameMap::tryMovePlayer(Vec2 toPos) {
+	//禁止移动事项
+	if (isShowDialogue){ return; }
+
 	Vec2 coor = getTileCoordinateAt(toPos - getMapLeftBottomPos());
 	Size mapSize = this->_map->getMapSize();
 

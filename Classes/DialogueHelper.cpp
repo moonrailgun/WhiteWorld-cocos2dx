@@ -1,5 +1,6 @@
 ﻿#include "DialogueHelper.h"
 #include "tinyxml2/tinyxml2.h"
+#include "GlobalData.h"
 
 DialogueHelper* DialogueHelper::parseWithFile(const char *xmlFileName){
 	DialogueHelper* dialogueHelper = new DialogueHelper();
@@ -64,6 +65,16 @@ std::unordered_map<int, std::vector<DialogueData>>* DialogueHelper::getDialogueL
 std::vector<DialogueData> DialogueHelper::getDialogueById(int id){
 	return this->_dialogueList[id];
 }
+
+void DialogueHelper::updateDialogueText(const char *text){
+	if (dialogueManager == NULL){ return; }
+
+	dialogueManager->updateDialogueText(text);
+}
+void DialogueHelper::updateDialogueOptions(std::vector<Option> *options){
+
+}
+
 
 DialogueHelper::DialogueHelper(){
 

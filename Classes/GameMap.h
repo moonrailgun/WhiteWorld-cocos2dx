@@ -25,6 +25,8 @@ public:
 	//交互操作
 	void inspect();
 	void inspectWith(Vec2 targetMapPos);
+
+	bool isShowDialogue = false;
 private:
 	TMXTiledMap* _map;
 	Player* _player;

@@ -37,6 +37,10 @@ public:
 	std::vector<DialogueData>* getFirstDialogue();
 	std::unordered_map<int, std::vector<DialogueData>>* getDialogueList();
 	std::vector<DialogueData> getDialogueById(int id);
+
+	//更新操作
+	static void updateDialogueText(const char *text);
+	static void updateDialogueOptions(std::vector<Option> *options);
 private:
 	std::unordered_map<int, std::vector<DialogueData>> _dialogueList;//<对话列表ID， 对话序列>
 };
