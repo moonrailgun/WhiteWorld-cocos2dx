@@ -67,12 +67,14 @@ std::vector<DialogueData> DialogueHelper::getDialogueById(int id){
 }
 
 void DialogueHelper::updateDialogueText(const char *text){
-	if (dialogueManager == NULL){ return; }
+	if (dialogueManager == NULL){ log("[error]dialogueManager have not init."); return; }
 
 	dialogueManager->updateDialogueText(text);
 }
-void DialogueHelper::updateDialogueOptions(std::vector<Option> *options){
+void DialogueHelper::updateDialogueOptions(std::vector<Option> options){
+	if (dialogueManager == NULL){ log("[error]dialogueManager have not init."); return; }
 
+	dialogueManager->updateDialogueOptions(options);
 }
 
 

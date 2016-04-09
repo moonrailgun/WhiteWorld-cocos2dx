@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include "DialogueHelper.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -15,11 +16,13 @@ public:
 	void showDialogue(Node* node);
 	void hideDialogue();
 	void updateDialogueText(const char* text);
+	void updateDialogueOptions(std::vector<Option> options);
 	Scale9Sprite* getDialogueBg();
 	~DialogueManager();
 private:
 	Scale9Sprite* _dialogueBg;
 	LabelTTF* _dialogueText;
+	Menu* _dialogueMenu;
 };
 
 #endif

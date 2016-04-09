@@ -242,6 +242,7 @@ void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
 				}
 				else if (type == DialogueType::option) {
 					DialogueHelper::updateDialogueText("");
+					DialogueHelper::updateDialogueOptions(data.options);
 				}
 				(*dialogueIndex)++;
 
