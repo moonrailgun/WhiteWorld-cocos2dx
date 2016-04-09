@@ -26,6 +26,9 @@ public:
 	void inspect();
 	void inspectWith(Vec2 targetMapPos);
 
+	//触发对话
+	void triggerPlot(int triggerPlotId, const char *dialogueFileName = "common");
+
 	bool isShowDialogue = false;
 private:
 	TMXTiledMap* _map;

@@ -86,51 +86,7 @@ void GameMap::onMapLoadCompleted(){
 	int triggerPlotId = properties.at("triggerPlotId").asInt();
 	if (triggerPlotId != 0 && dialogueManager != NULL){
 		//触发对话事件
-		DialogueHelper* dialogueHelper = DialogueHelper::parseWithFile("common");
-		auto dialogue = dialogueHelper->getDialogueById(triggerPlotId);
-		if (!dialogue.empty()){
-			auto parentNode = this->getParent();
-			dialogueManager->showDialogue(parentNode);
-			isShowDialogue = true;
-
-			auto type = dialogue.at(0).type;
-			if (type == DialogueType::string){
-				//文本类型
-				DialogueHelper::updateDialogueText(dialogue.at(0).content.c_str());
-			}
-			else if (type == DialogueType::option){
-				//选项类型
-			}
-
-
-			int* dialogueIndex = new int(1);
-			int dialogueMaxIndex = dialogue.size();
-			auto dialogueBg = dialogueManager->getDialogueBg();
-			EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
-			listener->onTouchBegan = [&, dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
-				//对话完毕
-				if (*dialogueIndex >= dialogueMaxIndex){
-					dialogueBg->getEventDispatcher()->removeEventListenersForTarget(dialogueBg);
-					dialogueManager->hideDialogue();
-					this->isShowDialogue = false;
-
-					return true;
-				}
-
-				DialogueData data = dialogue.at(*dialogueIndex);
-				DialogueType type = data.type;
-				if (type == DialogueType::string) {
-					DialogueHelper::updateDialogueText(data.content.c_str());
-				}
-				else if (type == DialogueType::option) {
-					DialogueHelper::updateDialogueText("");
-				}
-				(*dialogueIndex)++;
-
-				return true;
-			};
-			dialogueBg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, dialogueBg);
-		}
+		triggerPlot(triggerPlotId);
 	}
 }
 
@@ -242,6 +198,56 @@ void GameMap::inspectWith(Vec2 targetMapPos) {
 			//传送类型
 			std::string inspectTo = inspectObject["to"].asString();
 			log("is try teleport to %s", inspectTo.c_str());
+		}
+	}
+}
+
+void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
+	if (triggerPlotId != 0){
+		DialogueHelper* dialogueHelper = DialogueHelper::parseWithFile(dialogueFileName);
+		auto dialogue = dialogueHelper->getDialogueById(triggerPlotId);
+		if (!dialogue.empty()){
+			auto parentNode = this->getParent();
+			dialogueManager->showDialogue(parentNode);
+			isShowDialogue = true;
+
+			auto type = dialogue.at(0).type;
+			if (type == DialogueType::string){
+				//文本类型
+				DialogueHelper::updateDialogueText(dialogue.at(0).content.c_str());
+			}
+			else if (type == DialogueType::option){
+				//选项类型
+			}
+
+
+			int* dialogueIndex = new int(1);
+			int dialogueMaxIndex = dialogue.size();
+			auto dialogueBg = dialogueManager->getDialogueBg();
+			EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+			listener->onTouchBegan = [&, dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
+				//对话完毕
+				if (*dialogueIndex >= dialogueMaxIndex){
+					dialogueBg->getEventDispatcher()->removeEventListenersForTarget(dialogueBg);
+					dialogueManager->hideDialogue();
+					this->isShowDialogue = false;
+
+					return true;
+				}
+
+				DialogueData data = dialogue.at(*dialogueIndex);
+				DialogueType type = data.type;
+				if (type == DialogueType::string) {
+					DialogueHelper::updateDialogueText(data.content.c_str());
+				}
+				else if (type == DialogueType::option) {
+					DialogueHelper::updateDialogueText("");
+				}
+				(*dialogueIndex)++;
+
+				return true;
+			};
+			dialogueBg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, dialogueBg);
 		}
 	}
 }
