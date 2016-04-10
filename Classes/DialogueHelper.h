@@ -40,7 +40,7 @@ public:
 
 	//更新操作
 	static void updateDialogueText(const char *text);
-	static void updateDialogueOptions(std::vector<Option> options);
+	static void updateDialogueOptions(std::vector<Option> options, std::function<void(const char*, int)> &onSelected = std::function<void(const char*, int)>(nullptr));
 private:
 	std::unordered_map<int, std::vector<DialogueData>> _dialogueList;//<对话列表ID， 对话序列>
 };

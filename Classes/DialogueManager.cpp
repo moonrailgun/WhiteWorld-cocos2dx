@@ -62,7 +62,7 @@ void DialogueManager::updateDialogueText(const char* text){
 	}
 }
 
-void DialogueManager::updateDialogueOptions(std::vector<Option> options){
+void DialogueManager::updateDialogueOptions(std::vector<Option> options, std::function<void(const char*, int)> &onSelected){
 	if (_dialogueText != NULL && _dialogueText->getParent() != NULL){
 		_dialogueText->setString("");
 	}
@@ -81,8 +81,14 @@ void DialogueManager::updateDialogueOptions(std::vector<Option> options){
 	for (Option option : options) {
 		auto label = Label::create(option.text, "", labelDimensions.height - 10, labelDimensions, TextHAlignment::CENTER, TextVAlignment::CENTER);
 		label->setColor(Color3B(16, 16, 16));
-		MenuItemLabel* item = MenuItemLabel::create(label, ccMenuCallback([&, option](Ref *ref){
-			log("item \"%s\" selected[toId:%d]", option.text.c_str(), option.toId); 
+
+		MenuItemLabel* item = MenuItemLabel::create(label, ccMenuCallback([&, option, onSelected](Ref *ref){
+			const char* text = option.text.c_str();
+			int toId = option.toId;
+			if (onSelected != NULL){
+				onSelected(text, toId);
+			}
+
 			_dialogueMenu->removeAllChildren();
 		}));
 		item->setAnchorPoint(Vec2::ANCHOR_MIDDLE);

@@ -218,6 +218,7 @@ void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
 			}
 			else if (type == DialogueType::option){
 				//选项类型
+				DialogueHelper::updateDialogueOptions(dialogue.at(0).options);
 			}
 
 
@@ -226,8 +227,8 @@ void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
 			auto dialogueBg = dialogueManager->getDialogueBg();
 			EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
 			listener->onTouchBegan = [&, dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
-				//对话完毕
 				if (*dialogueIndex >= dialogueMaxIndex){
+					//对话完毕
 					dialogueBg->getEventDispatcher()->removeEventListenersForTarget(dialogueBg);
 					dialogueManager->hideDialogue();
 					this->isShowDialogue = false;
@@ -242,7 +243,11 @@ void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
 				}
 				else if (type == DialogueType::option) {
 					DialogueHelper::updateDialogueText("");
-					DialogueHelper::updateDialogueOptions(data.options);
+
+					std::function<void(const char*, int)> callback = [dialogueBg](const char* text, int toId){
+						log("%s-%d", text, toId);
+					};
+					DialogueHelper::updateDialogueOptions(data.options, callback);
 				}
 				(*dialogueIndex)++;
 

@@ -16,7 +16,7 @@ public:
 	void showDialogue(Node* node);
 	void hideDialogue();
 	void updateDialogueText(const char* text);
-	void updateDialogueOptions(std::vector<Option> options);
+	void updateDialogueOptions(std::vector<Option> options, std::function<void(const char*, int)> &onSelected);
 	Scale9Sprite* getDialogueBg();
 	~DialogueManager();
 private:

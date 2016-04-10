@@ -71,10 +71,10 @@ void DialogueHelper::updateDialogueText(const char *text){
 
 	dialogueManager->updateDialogueText(text);
 }
-void DialogueHelper::updateDialogueOptions(std::vector<Option> options){
+void DialogueHelper::updateDialogueOptions(std::vector<Option> options, std::function<void(const char*, int)> &onSelected){
 	if (dialogueManager == NULL){ log("[error]dialogueManager have not init."); return; }
 
-	dialogueManager->updateDialogueOptions(options);
+	dialogueManager->updateDialogueOptions(options, onSelected);
 }
 
 
