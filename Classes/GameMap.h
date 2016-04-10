@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include "DialogueHelper.h"
 
 USING_NS_CC;
 
@@ -30,6 +31,11 @@ public:
 	void triggerPlot(int triggerPlotId, const char *dialogueFileName = "common");
 
 	bool isShowDialogue = false;
+
+	EventListenerTouchOneByOne::ccTouchBeganCallback onMapTouchBegan;//地图触摸回调
+	static int dialogueIndex;//对话索引编号
+	void addDialogueTouchEvent(std::vector<DialogueData> dialogue);//添加触摸事件
+	void updateDialogueContent(std::vector<DialogueData> dialogue);//更新对话框内容
 private:
 	TMXTiledMap* _map;
 	Player* _player;

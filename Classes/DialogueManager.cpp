@@ -78,6 +78,7 @@ void DialogueManager::updateDialogueOptions(std::vector<Option> options, std::fu
 		labelDimensions.height /= 4;
 	}
 	int itemIndex = 0;
+	_dialogueMenu->removeAllChildren();//清空之前可能有的
 	for (Option option : options) {
 		auto label = Label::create(option.text, "", labelDimensions.height - 10, labelDimensions, TextHAlignment::CENTER, TextVAlignment::CENTER);
 		label->setColor(Color3B(16, 16, 16));

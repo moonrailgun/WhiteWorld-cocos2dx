@@ -3,6 +3,8 @@
 #include "GlobalData.h"
 #include "DialogueHelper.h"
 
+int GameMap::dialogueIndex = 0;
+
 GameMap* GameMap::createGameMap(char* mapName){
 	GameMap* gameMap = GameMap::create();
 
@@ -203,7 +205,7 @@ void GameMap::inspectWith(Vec2 targetMapPos) {
 }
 
 void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
-	if (triggerPlotId != 0){
+	if (triggerPlotId != 0) {
 		DialogueHelper* dialogueHelper = DialogueHelper::parseWithFile(dialogueFileName);
 		auto dialogue = dialogueHelper->getDialogueById(triggerPlotId);
 		if (!dialogue.empty()){
@@ -221,39 +223,51 @@ void GameMap::triggerPlot(int triggerPlotId, const char *dialogueFileName){
 				DialogueHelper::updateDialogueOptions(dialogue.at(0).options);
 			}
 
-
-			int* dialogueIndex = new int(1);
-			int dialogueMaxIndex = dialogue.size();
-			auto dialogueBg = dialogueManager->getDialogueBg();
-			EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
-			listener->onTouchBegan = [&, dialogue, dialogueIndex, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
-				if (*dialogueIndex >= dialogueMaxIndex){
-					//对话完毕
-					dialogueBg->getEventDispatcher()->removeEventListenersForTarget(dialogueBg);
-					dialogueManager->hideDialogue();
-					this->isShowDialogue = false;
-
-					return true;
-				}
-
-				DialogueData data = dialogue.at(*dialogueIndex);
-				DialogueType type = data.type;
-				if (type == DialogueType::string) {
-					DialogueHelper::updateDialogueText(data.content.c_str());
-				}
-				else if (type == DialogueType::option) {
-					DialogueHelper::updateDialogueText("");
-
-					std::function<void(const char*, int)> callback = [dialogueBg](const char* text, int toId){
-						log("%s-%d", text, toId);
-					};
-					DialogueHelper::updateDialogueOptions(data.options, callback);
-				}
-				(*dialogueIndex)++;
-
-				return true;
-			};
-			dialogueBg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, dialogueBg);
+			GameMap::dialogueIndex = 1;
+			addDialogueTouchEvent(dialogue);
 		}
+	}
+}
+
+void GameMap::addDialogueTouchEvent(std::vector<DialogueData> dialogue){
+	int dialogueMaxIndex = dialogue.size();
+	auto dialogueBg = dialogueManager->getDialogueBg();
+	//定义点击回调事件
+	onMapTouchBegan = [&, dialogue, dialogueBg, dialogueMaxIndex](Touch *  touch, Event *  unused_event){
+		if (GameMap::dialogueIndex >= dialogueMaxIndex){
+			//对话完毕
+			dialogueBg->getEventDispatcher()->removeEventListenersForTarget(dialogueBg);//关闭点击事件
+			dialogueManager->hideDialogue();
+			this->isShowDialogue = false;
+
+			return true;
+		}
+
+		updateDialogueContent(dialogue);
+		
+		return true;
+	};
+
+	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = onMapTouchBegan;
+	dialogueBg->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, dialogueBg);
+}
+
+void GameMap::updateDialogueContent(std::vector<DialogueData> dialogue){
+	auto dialogueBg = dialogueManager->getDialogueBg();
+	DialogueData data = dialogue.at(GameMap::dialogueIndex);
+	DialogueType type = data.type;
+	if (type == DialogueType::string) {
+		DialogueHelper::updateDialogueText(data.content.c_str());
+		GameMap::dialogueIndex++;
+	}
+	else if (type == DialogueType::option) {
+		DialogueHelper::updateDialogueText("");
+		std::function<void(const char*, int)> callback = [&, dialogue, dialogueBg](const char* text, int toId){
+			log("%s-%d", text, toId);//todo
+			dialogueIndex++;
+			updateDialogueContent(dialogue);
+		};
+		DialogueHelper::updateDialogueOptions(data.options, callback);
 	}
 }
