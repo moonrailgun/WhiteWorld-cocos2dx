@@ -6,14 +6,32 @@
 		<options>
 			<option>你是谁？</option>
 		</options>
-		<string name="未知">我是精灵的长者。</string>
-		<string name="未知">混沌与秩序的行走者</string>
-		<string name="未知">孩子，我必须告诉你一个不幸的消息。你已经死亡了。</string>
+		<string name="精灵长者">我是精灵的长者。</string>
+		<string name="精灵长者">混沌与秩序的行走者</string>
+		<string name="精灵长者">我们精灵一族是介于生与死之间存在。凡人死后只有0.0001%的概率才有可能成为精灵的一员</string>
+		<string name="精灵长者">孩子，我必须告诉你一个不幸的消息。你已经死亡了。而幸运的事是，你成为了极小概率才可能变成的精灵一员</string>
 		<options>
 			<option>什么？我已经死亡了？</option>
 			<option>不！不可能。我明明还有感知。</option>
 		</options>
-		<string name="未知">不必感到惊讶。你虽然失去了肉体。但你的精神依旧存在。</string>
-		<string name="未知">欢迎来到精灵的国度。因为一片虚无。这里被称为————纯白世界</string>
+		<string name="精灵长者">不必感到惊讶。你虽然失去了肉体。但你的精神依旧存在。甚至。你还能用精灵的特殊能力依旧行走在世间</string>
+		<string name="精灵长者">欢迎来到精灵的国度。因为一片虚无。这里被称为————纯白世界</string>
+		<string name="精灵长者">...</string>
+		<string name="精灵长者">对了。这是你生前的尸体。现在我要教你精灵一族的天赋能力————附身。你可以通过这个能力让自己进入一个无主的身体。现在你来试试看重新回到你的身体吧。(使用E键调查无主的身体来使用附身的能力)</string>
+	</dialogue>
+	<dialogue id="2">
+		<string>你还没有身体!</string>
+	</dialogue>
+	<dialogue id="3">
+		<options>
+			<option>附身</option>
+			<option>不了</option>
+		</options>
+	</dialogue>
+	<dialogue id="4">
+		<options>
+			<option>使用</option>
+			<option>不了</option>
+		</options>
 	</dialogue>
 </dialogues>

@@ -13,7 +13,7 @@ enum DialogueType{
 //选项数据
 struct Option{
 	std::string text;
-	int toId;
+	int toId = -1;
 };
 
 //会话数据

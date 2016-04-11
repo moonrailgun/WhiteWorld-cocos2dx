@@ -265,6 +265,9 @@ void GameMap::updateDialogueContent(std::vector<DialogueData> dialogue){
 		DialogueHelper::updateDialogueText("");
 		std::function<void(const char*, int)> callback = [&, dialogue, dialogueBg](const char* text, int toId){
 			log("%s-%d", text, toId);//todo
+			if (toId > 0){
+				log("跳转到对话ID：%d ------------------------未实现", toId);
+			}
 			dialogueIndex++;
 			updateDialogueContent(dialogue);
 		};

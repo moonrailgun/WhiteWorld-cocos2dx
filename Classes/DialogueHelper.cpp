@@ -39,7 +39,7 @@ DialogueHelper* DialogueHelper::parseWithFile(const char *xmlFileName){
 				for (auto option = content->FirstChildElement(); option; option = option->NextSiblingElement()){
 					Option _option;
 					_option.text = option->GetText();
-					_option.toId = (int)option->Attribute("toId") || -1;
+					_option.toId = option->Attribute("toId") != NULL ? (int)option->Attribute("toId") : -1;
 					options.push_back(_option);
 				}
 				data.options = options;
